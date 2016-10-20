@@ -1,0 +1,36 @@
+<!--
+    _INPUT_NAME_
+    Box - textarea
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        _INPUT_NAME_
+    </div>
+    <div class='one-block-input'>
+        <textarea style='width:500px; height: 100px;' class='editor' id='_COLUMN_NAME_' name='_COLUMN_NAME_'><?= (!empty($content['inputs']['_COLUMN_NAME_'])) ? $content['inputs']['_COLUMN_NAME_']:'' ?></textarea>
+    </div>    
+</div>
+<script>
+//froala
+$(function() {
+    var type = 'homepage';
+    $('.editor').froalaEditor({
+         height: 300,
+         width: 700,
+        //image upload
+        imageUploadURL: '/cms-_CREATED_URL_-dodaj-obraz',
+        imageUploadMethod: 'POST',
+        imageUploadParams: {type: type},
+        //images load
+        imageManagerLoadURL: '/cms-_CREATED_URL_-pokaz-obraz',
+        imageManagerLoadParams: {type: type},
+        imageManagerLoadMethod: 'POST',
+        //image delete
+        imageManagerDeleteURL: '/cms-_CREATED_URL_-usun-obraz',
+        imageManagerDeleteParams: {type: type},
+        //language
+        language: '<?=$_SESSION['cms_lang']?>'
+        
+        })
+      });   
+</script>

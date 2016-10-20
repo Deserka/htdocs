@@ -1,0 +1,175 @@
+<?php 
+    if(!empty($_POST['domain']))
+    {
+        
+        $_POST['domain'];
+        $_POST['mail1'];
+        $_POST['mail2'];
+        $_POST['cmsuser'];
+        $_POST['cmspass'];
+        $_POST['cmslang'];
+
+        $domain = $_POST['domain'];
+        $user = $_POST['cmsuser'];
+        $pass = password_hash($_POST['cmspass'], PASSWORD_DEFAULT);
+
+        
+        
+       
+       
+        try {
+            $pdo = new PDO('mysql:host='.$_POST['basehost'].';charset=utf8;dbname='.$_POST['basename'],$_POST['baseuser'],$_POST['basepass']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);     
+            $fail = false;   
+        }
+        catch(PDOException $t) {
+           $er = 'The connect can not create: ' . $t->getMessage();
+           $fail = true;
+        }    
+
+        if($fail === true){
+            $show = 'Nie udało się połączyć z bazą danych. Błąd: <br />';
+        }     
+        else{
+             
+            //Create tabele - users                
+                $table_users =     
+                "CREATE TABLE users (
+                user_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+                login varchar(20) NOT NULL, 
+                pass varchar(100) NOT NULL,
+                user_mail varchar(100) NOT NULL,
+                user_log_in DATETIME NOT NULL,
+                user_last_log_in DATETIME NOT NULL,
+                user_lang varchar(2) NOT NULL,
+                user_control varchar(100) NOT NULL,
+                  PRIMARY KEY (user_id)
+                )
+                CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+                try {               
+                     $pdo->exec($table_users);
+                    echo "Tabela users została utworzona.<br />";
+                    }
+                catch(PDOException $t)
+                    {
+                    echo "Błąd przy tworzeniu tabeli users:<br />" . $t->getMessage() . '<br />';
+                    }
+                // INSERT new user    
+                $query = $pdo -> prepare ("SELECT login FROM users WHERE login = :login ");
+                $query->bindValue(':login', $user, PDO::PARAM_STR);
+                $query->execute();          
+                $is_login = $query->fetchAll();      
+                if(!empty($is_login)){
+                    echo 'Użytkownik już istniał<br />';
+                }               
+                else {
+                    $query = $pdo -> prepare ("INSERT INTO users (login, pass, user_mail, user_lang) VALUES (:login, :pass, :mail, :lang) ");
+                    $query->bindValue(':login', $user, PDO::PARAM_STR);
+                    $query->bindValue(':pass', $pass, PDO::PARAM_STR);
+                    $query->bindValue(':mail', $_POST['mail1'], PDO::PARAM_STR);
+                    $query->bindValue(':lang', $_POST['cmslang'], PDO::PARAM_STR);
+                    $query->execute();  
+                    echo 'Użytkownik został dodany<br />';         	
+                }
+                // Modify configuration
+                // Change sql file
+                $sqlcon = file_get_contents('../config/sql.php');
+				
+				$sqlcon = preg_replace("/host= '(.*?)'/", "host= '" . $_POST['basehost'] . "'", $sqlcon);
+				$sqlcon = preg_replace("/dbase= '(.*?)'/", "dbase= '" . $_POST['basename'] . "'", $sqlcon);
+				$sqlcon = preg_replace("/user= '(.*?)'/", "user= '" . $_POST['baseuser'] . "'", $sqlcon);
+				$sqlcon = preg_replace("/pass= '(.*?)'/", "pass= '" . $_POST['basepass'] . "'", $sqlcon);
+
+                file_put_contents('../config/sql.php', $sqlcon);
+                echo 'Config zaktualizowany<br />'; 
+                
+                // Modify htaccess
+                $htaccess = file_get_contents('../.htaccess');
+                $htaccess = str_replace('extrasuperdomain.pl', $domain, $htaccess);
+                file_put_contents('../.htaccess', $htaccess);
+                 echo 'Htaccess zaktualizowany<br />'; 
+                
+                
+
+                
+        }
+           
+
+               
+    }
+?>
+<html>
+    <head>
+        <title>newSite CMS - Asystent Instalacji</title>
+        <meta charset="UTF-8">
+    </head>
+<style>
+    .midder{ width: 600px; margin: 0px auto; font: normal 13px/18px Arial, Helvetica, sans-serif; color: #333;}
+    .left{display: inline-block; width: 200px; }
+</style>
+
+<div class="midder">
+    <h2>Asystent instalacji</h2>        
+<?php
+if(isset($fail)){
+    if($fail === true){
+        echo $show.$er;    
+    }    
+}
+
+    $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+?>    
+    <form action="/install/install.phtml" method="POST">
+        <p>
+            <a class="left">Domena</a>
+            <a class="right"><input type="text" name="domain" value="<?= (!empty($_POST['domain'])) ? $_POST['domain']:$domain ?>" /></a>
+        </p>    
+        <p>
+            <a class="left">Główny adres e-mail</a>
+            <a class="right"><input type="text" name="mail1" value="newglob@<?= $domain ?>" /></a>
+        </p>   
+        <p>
+            <a class="left">Pomocniczny adres e-mail</a>
+            <a class="right"><input type="text" name="mail2" value="" /></a>
+        </p>                   
+        <h3>
+            Konfiguracja bazy danych
+        </h3>
+        <p>
+            <a class="left">Adres serwera bazy danych</a>
+            <a class="right"><input type="text" name="basehost" value="<?= (!empty($_POST['domain'])) ? $_POST['basehost']:'sql.s19.vdl.pl' ?>" /></a>
+        </p>      
+        <p>
+            <a class="left">Nazwa bazy danych</a>
+            <a class="right"><input type="text" name="basename" value="<?= (!empty($_POST['basename'])) ? $_POST['basename']:'newglob_bio'?>" /></a>
+        </p>      
+        <p>
+            <a class="left">Użytkownik bazy danych</a>
+            <a class="right"><input type="text" name="baseuser" value="<?= (!empty($_POST['baseuser'])) ? $_POST['baseuser']:'newglob_bio'?>" /></a>
+        </p>      
+        <p>
+            <a class="left">Hasło bazy danych</a>
+            <a class="right"><input type="text" name="basepass" value="<?= (!empty($_POST['basepass'])) ? $_POST['basepass']:'djGRXwKW' ?>"  /></a>
+        </p>  
+        <h3>
+            Konto CMS
+        </h3>
+        <p>
+            <a class="left">Nazwa użytkownika</a>
+            <a class="right"><input type="text" name="cmsuser" value="admin" /></a>
+        </p>      
+        <p>
+            <a class="left">Hasło</a>
+            <a class="right"><input type="text" name="cmspass" value="some_pass_1410" /></a>
+        </p>      
+        <p>
+            <a class="left">Język CMS</a>
+            <a class="right"><input type="text" name="cmslang" value="pl" /></a>
+        </p>       
+        
+        <input type="submit" value="Wyślij" />
+        
+    </form>        
+    
+</div>
+</html>

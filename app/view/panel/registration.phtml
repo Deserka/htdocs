@@ -1,0 +1,111 @@
+<?php
+$captcha = $this -> get('captcha');
+
+$back = $this -> get('back');
+$ok = $this -> get('ok');
+$none = $this -> get('none');
+if(!empty($back))
+{
+	$warning = $back[1];
+	$data = $back[2];
+}
+
+
+?>		
+   
+<section id="panel" class="panel">
+    <div class="loginer">
+<?php 
+    if(!empty($warning['main']))
+    { ?>      
+     <div class="show-error-login info-element">
+        <?= $warning['main']?>
+    </div>  
+<? } ?>     
+
+       
+            
+<?php 
+    if(!empty($ok))
+    { ?>        
+        <div class="middle width230 info-element">
+            <span class="panel-login-color-green ">Dziękujemy za rejestrację.</span><br />
+            <span>Aby aktywować konto kliknij link znajdujący się w mailu, przesłanym na Twój adres e-mail.</span>
+        </div>  
+<? } 
+    elseif(!empty($none)) 
+    {?>     
+        <div class="oks middle width230 info-element">
+            <span class="anel-login-color-red">Coś poszło nie tak...</span><br />
+            Sprobuj ponownie lub skontaktuj się z administratorem.
+        </div>      
+<? } ?>          
+        
+<?php
+    if(!empty($warning))
+    {
+        foreach($warning as $w)
+        {
+?>
+            <div class="login-input-error info-element"><?= $w ?></div>
+<?php            
+        }
+    }
+?>        
+
+        
+        
+        
+        
+        
+        <h1>Rejestracja</h1>
+        <form action="/panel-registration_in" method="POST">
+            
+        <label class="login-label">
+            Login 
+            <input class="login-input" type="text" placeholder="(min.3 max.15 znaków)" maxlength="128" value="<?=(!empty($data['login'])) ? $data['login']:''?>" name="login">        
+        </label>        
+        <label class="login-label">
+            Hasło 
+            <input class="login-input" type="password" placeholder="(min.6 max.30 znaków)" maxlength="128" value="" name="password">  
+        </label>                       
+        <label class="login-label">
+            Powtórz hasło 
+            <input class="login-input" type="password" placeholder="Powtórz hasło" maxlength="128" value="" name="password2">  
+        </label>          
+        <label class="login-label"> 
+            Adres e-mail 
+            <input class="login-input" type="mail" placeholder="Adres e-mail" maxlength="128" value="<?=(!empty($data['mail'])) ? $data['mail']:''?>" name="mail">   
+        </label>       
+        <label class="login-label">
+            Captcha 
+            <input class="login-input" type="text" placeholder="Captcha" maxlength="128" value="" name="captcha">      
+        </label>             
+        <div class="middle width230">
+            <div class="registartion-captcha-div">
+                <img src="data:image/png;base64,<?= $captcha ?>" alt="" />
+            </div>        
+        </div>
+        <div class="middle width230"> 
+            <button class="login-submit margin-top15">Zarejestruj</button>             
+            <div class="register-button margin-left10 margin-top15">
+                <a class="" href="/panel">Zaloguj się</a>
+            </div>        
+        </div>
+                    
+            
+        </form>  
+    </div>
+</section>
+
+
+
+    
+    
+
+             
+
+
+
+
+

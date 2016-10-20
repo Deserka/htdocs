@@ -1,0 +1,73 @@
+<?php
+$content = $this -> get('content');
+?>		
+
+
+<section id="panel" class="panel">
+    
+    <div class="loginer">
+        <h2 class="panelh2">Konto</h2>
+        <h3 class="h3-login"><?= $_SESSION['user_panel_login'] ?></h3>
+        <div class="acc-avatar">
+            <img src="/public/images/panel/avatars/<?= $_SESSION['user_panel_avatar'] ?>" style="border-radius: 50%;  " />
+        </div>
+
+<?php
+    include('parts/panel_menu.phtml');
+?>                
+
+        <div class="acc-one-elem">
+            <h3>Login</h3>
+            <a><?= $_SESSION['user_panel_login'] ?></a>
+        </div>
+        <div class="acc-one-elem">
+            <h3>E-mail</h3>
+            <a><?= $content['mail'] ?></a>
+        </div>
+        <div class="acc-one-elem">
+            <h3>Rodzaj konta</h3>
+            <a><?= $content['acc-type'] ?></a>
+        </div>
+        <div class="acc-one-elem">
+            <h3>Rejestracja</h3>
+            <a><?= $content['register'] ?></a>
+        </div>
+        <div class="acc-one-elem">
+            <h3>Ostatnie logowanie</h3>
+            <a><?= $content['last_login'] ?></a>
+        </div>        
+        <div class="acc-one-elem">
+            <h3>Newsletter</h3>
+            <a><?= $content['newsletter'] ?></a>
+        </div>             
+        <div class="acc-one-elem">
+            <h3>Imię</h3>
+            <a><?= $content['name'] ?></a>
+        </div>        
+        <div class="acc-one-elem">
+            <h3>O mnie</h3>
+            <a><?= $content['about'] ?></a>
+        </div>        
+        <div class="acc-one-elem">
+            <h3>Płeć</h3>
+            <a><?= $content['sex'] ?></a>
+        </div>     
+        <div class="acc-one-elem">
+            <h3>Data urodzenia</h3>
+            <a><?= $content['age'] ?></a>
+        </div>                   
+        <div class="acc-one-elem">
+            <h3>Miasto</h3>
+            <a><?= $content['city'] ?></a>
+        </div>
+        <div class="acc-one-elem">
+            <h3>Zawód</h3>
+            <a><?= $content['vocation'] ?></a>
+        </div>       
+    
+        
+        
+        
+                
+   </div>
+</section>   

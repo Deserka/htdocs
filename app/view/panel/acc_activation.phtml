@@ -1,0 +1,51 @@
+<?php
+	$ret = $this -> get('activation');
+    $activation = $ret[0];
+    
+?>	
+
+<section id="panel" class="panel">
+    
+    <div class="loginer">
+        <h1>Aktywacja konta</h1>
+        <br />
+
+        <?php if($activation === 0){ ?>           
+            
+            <span class="panel-login-color-red">Brak konta do aktywacji.</span><br />
+            Pamietaj, że konto aktywować można do 48 godzin po zarejestrowaniu. <br />
+            Po tym czasie wymagana jest ponowna rejestracja.  <br />      
+            (można użyć tego samego adresu e-mail oraz loginu)   
+            <p><a class="acc-activation-to-login" href="/panel-registration">Kliknij aby przejść do rejestracji</a></p> 
+        
+        <? } elseif($activation === 1){  ?> 
+            
+            <span class="panel-login-color-blue">Konto zostało aktywowane wcześniej - data aktywacji: <?php if(!empty($ret[1])) { echo $ret[1];} ?>.</span>
+            <p><a class="acc-activation-to-login" href="/panel">Kliknij aby przejść do strony logowania</a></p>
+            
+        <? } elseif($activation === 2){  ?>     
+
+            <span class="panel-login-color-green">Konto zostało aktywowane.</span>
+            <p><a class="acc-activation-to-login" href="/panel">Kliknij aby przejść do strony logowania</a></p>
+
+        <? } else{ ?>
+            
+            <span class="panel-login-color-red">Coś poszło nie tak..</span>
+            <p><a class="acc-activation-to-login" href="/panel-registration">Zarejestruj się ponownie</a> lub skontaktuj się z administratorem.</p>                      
+            
+        <? } ?> 
+
+    </div>
+    
+</section>  
+
+
+
+
+
+
+
+
+
+
+

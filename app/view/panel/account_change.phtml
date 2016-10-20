@@ -1,0 +1,482 @@
+<?php
+$content = $this -> get('content');
+?>		
+
+
+<section id="panel" class="panel">
+<?php
+    if(!empty($_SESSION['user_panel_ok']))
+    {
+?>   
+        <div class="middle width230 info-element">
+            <span class="c-green"><?= $_SESSION['user_panel_ok'] ?></span>
+        </div>   
+<?php
+unset($_SESSION['user_panel_ok']);
+    }
+?>
+  
+    
+    <div class="loginer">
+        <h2 class="panelh2">Zmień dane</h2>
+        <h3 class="h3-login"><?= $_SESSION['user_panel_login'] ?></h3>
+        <div class="acc-avatar">
+            <img src="/public/images/panel/avatars/<?= $_SESSION['user_panel_avatar'] ?>" style="border-radius: 50%;  " />
+        </div>
+ 
+<?php
+    include('parts/panel_menu.phtml');
+?>        
+
+     <form action="/panel-account-update" method="POST">
+        <label class="login-label">
+            Newsletter
+            <select class="w230"  name="newsletter">
+                <option value="0" <?=  ($content['newsletter'] == 0) ? 'selected':'' ?> >Nie chcę otrzymywać</option>
+                <option value="1" <?=  ($content['newsletter'] == 1) ? 'selected':'' ?> >Chcę otrzymywać</option>
+            </select>                
+        </label>
+
+        <label class="login-label">
+            Imię
+            <input class="input_input" type="text" maxlength="128" value="<?=  (!empty($content['name']) ? $content['name']:'') ?>" name="name">
+        </label>
+
+        <label class="login-label">
+            O mnie
+            <input class="input_input" type="text" maxlength="128" value="<?=  (!empty($content['about']) ? $content['about']:'') ?>" name="about">
+        </label>
+
+        <label class="login-label">
+            Płeć
+                    <select class="w230"  name="sex">
+                        <option value="W"<?=  ($content['sex'] === 'W') ? 'selected':'' ?> >Kobieta</option>
+                        <option value="M"<?=  ($content['sex'] === 'M') ? 'selected':'' ?> >Mężczyzna</option>
+                        <option value="D" <?= ($content['sex'] === 'D') ? 'selected':'' ?> >Inna</option>
+                    </select>               
+        </label>
+
+        <label class="login-label">
+            Data urodzenia <br />
+<?php
+var_dump($content['age']);
+$days = range(1, 31);
+$months = range(1, 12);
+$years = range(date('Y'), 1930);
+
+if(!empty($content['age']))
+{
+    $birth = explode('/', $content['age']);
+}
+?>                        
+                    <select class="w60" name="age1">
+<?php
+
+foreach($days as $day) {
+?>
+  <option <?=  ($birth[0] == $day ? 'selected':'') ?> value="<?= $day ?>"><?= $day ?></option>
+<?
+}
+?>
+                    </select>
+                    <select class="w60" name="age2">
+<?php
+foreach($months as $month) {
+?>
+  <option <?=  ($birth[1] == $month? 'selected':'') ?> value="<?= $month ?>"><?= $month ?></option>
+<?
+}
+?>
+                    </select>       
+                    <select class="w60" name="age3">
+<?php
+foreach($years as $year) {
+?>
+  <option <?=  ($birth[2] == $year ? 'selected':'') ?> value="<?= $year ?>"><?= $year ?></option>
+<?
+}
+?>
+                    </select>       
+        </label>                     
+   
+        <label class="login-label">
+            Miasto
+            <input class="input_input" type="text" maxlength="128" value="<?=  (!empty($content['city']) ? $content['city']:'') ?>" name="city">
+        </label>
+
+        <label class="login-label">
+            Zawód
+            <input class="input_input" type="text" maxlength="128" value="<?=  (!empty($content['vocation']) ? $content['vocation']:'') ?>" name="vocation">
+        </label>
+
+        <div class="middle width230"> 
+            <button type="submit" class="login-submit margin-top15">Zapisz</button>                    
+        </div>
+
+        
+    </form>    
+        
+                
+   </div>
+</section>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="lll">
+
+			
+
+			
+	<div id="whole_acc">
+				
+				<div id="c_acc">
+<form  method="post" action="/panel-account-update" enctype="multipart/form-data">				
+			<div class="llll2">
+				Twoje dane 
+				<a id="a_er">
+<?php
+	if(!empty($_SESSION['user_panel_warning']))
+	{
+		echo $_SESSION['user_panel_warning']; 
+		$_SESSION['user_panel_warning'] = '';
+	}
+    
+    elseif(!empty($_SESSION['user_panel_ok']))
+    {
+        echo '<a style="color: green">'.$_SESSION['user_panel_ok'].'</a>'; 
+        $_SESSION['user_panel_ok'] = '';
+    }
+        
+    
+?>						
+				</a>				
+
+			</div>			
+			
+
+
+<hr>			
+
+
+
+			
+			<div class="small">
+<?php
+$days = range(1, 31);
+$months = range(1, 12);
+$years = range(date('Y'), 1930);
+
+if(!empty($data['up_age']))
+{
+	$birth = explode('-', $data['up_age']);
+}
+?>			
+
+				
+					<select class="w60" name="age1">
+<?php
+
+foreach($days as $day) {
+?>
+  <option <?=  ($birth[2] == $day ? 'selected':'') ?> value="<?php echo($day) ?>"><?php echo($day) ?></option>
+<?
+}
+?>
+					</select>
+					<select name="age2">
+<?php
+foreach($months as $month) {
+?>
+  <option <?=  ($birth[1] == $month? 'selected':'') ?> value="<?php echo($month) ?>"><?php echo($month) ?></option>
+<?
+}
+?>
+					</select>		
+					<select name="age3">
+<?php
+foreach($years as $year) {
+?>
+  <option <?=  ($birth[0] == $year ? 'selected':'') ?> value="<?php echo($year) ?>"><?php echo($year) ?></option>
+<?
+}
+?>
+					</select>	
+<?php
+	if($data['up_age'] == '0000-00-00')
+	{
+		echo '<a style="color: red; display: inline-block; line-height: 30px;">!</a>';
+	}
+?>																			
+				<div class="clear"></div>
+			</div>							
+
+			<div class="input">
+				<div class="input_name">Miasto: </div>
+				<input class="input_input" type="text" maxlength="128" value="<?=  (!empty($data['up_city']) ? $data['up_city']:'') ?>" name="city">
+				<div class="clear"></div>
+			</div>	
+			
+			<div class="input">
+				<div class="input_name">Zawód: </div>
+				<input class="input_input" type="text" maxlength="128" value="<?=  (!empty($data['up_vocation']) ? $data['up_vocation']:'') ?>" name="vocation">
+				<div class="clear"></div>
+			</div>	
+			
+			<div class="input">
+				<div class="input_name">Avatar: </div>
+				<div class="one-of-divs">
+					<img src="public/images/panel/avatars/<?=  (!empty($data['up_avatar']) ? $data['up_avatar']:'') ?>" />
+				</div>
+				<div class="clear"></div>
+			</div>				
+
+			<div class="input">
+				<div class="input_name">Zmień avatar: </div>
+				<input name="avatar" type="file" /> 
+				<div class="clear"></div>
+			</div>	
+			
+			<div class="input">
+				<div class="input_name" style="color: red; font-weight: bold; ">Uwaga!: </div>
+				<div style="text-align: center; float: left; width: 220px; margin-top:5px; font-size:10px; color:#b60000;">
+					Obrazek musi mieć wymiar 80x80 pikseli.<br />
+					Obrazek może mieć maksymalnie 20KB<br />
+					(20 kilobajtów)<br />
+					Obrazek może mieć rozszerzenie<br />
+					.png, .jpg, .jpeg lub .gif.
+				</div>
+				<div class="clear"></div>
+			</div>			
+						
+			
+			<button class="login-submit">Zapisz</button>	
+		</form>						
+			</div> <!-- c_acc -->
+			
+	<div id="c_mail">
+				
+			<div class="llll2">
+				Zmień e-mail 
+				<a id="m_er" style="color: red; margin-left: 30px; font-size: 12px;">
+<?php
+	if(!empty($_SESSION['user_panel_warning_mail']))
+	{
+		echo $_SESSION['user_panel_warning_mail']; 
+		$_SESSION['user_panel_warning_mail'] = '';
+	}
+?>						
+				</a>
+				
+								
+			</div>			
+		<form  method="post" action="/panel-mail-update">				
+			<div class="input">
+				<div class="input_name">Nowy e-mail </div>
+				<input class="input_input" type="email" maxlength="128" value="" name="new_mail1" required id="n_mail1">
+				<div class="clear"></div>
+			</div>
+			
+			<div class="input">
+				<div class="input_name">Powtórz e-mail: </div>
+				<input class="input_input" type="email" maxlength="128" value="" name="new_mail2" required id="n_mail2">
+				<div class="clear"></div>
+			</div>	
+
+			<button class="login-submit" id="conf_mail">Zapisz</button>	
+		</form>			
+	</div>		<!-- c_mail -->
+			
+	<div id="c_pass">
+				
+			<div class="llll2">
+				Zmień  hasło
+				<a id="p_er" style="color: red; margin-left: 30px; font-size: 12px;">
+<?php
+	if(!empty($_SESSION['user_panel_warning_pass']))
+	{
+		echo $_SESSION['user_panel_warning_pass']; 
+		$_SESSION['user_panel_warning_pass'] = '';
+	}
+?>						
+				</a>				
+				
+			</div>			
+<form  method="post" action="/panel-pass-update">				
+			<div class="input">
+				<div class="input_name">Stare hasło: </div>
+				<input class="input_input" type="password" maxlength="30" value="" name="new_old_pass" id="new_old_pass" required>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="input">
+				<div class="input_name">Nowe hasło: </div>
+				<input class="input_input" type="password" maxlength="30" value="" name="new_pass1" id="new_pass1" placeholder="min.6 max.30 znaków" required>
+				<div class="clear"></div>
+			</div>	
+			
+			<div class="input">
+				<div class="input_name">Powtórz nowe hasło: </div>
+				<input class="input_input" type="password" maxlength="30" value="" name="new_pass2" id="new_pass2" placeholder="min.6 max.30 znaków" required>
+				<div class="clear"></div>
+			</div>	
+			
+			<button class="login-submit" id="conf_pass">Zapisz</button>	
+</form>			
+			</div>	<!-- c_mail -->
+			
+			<div id="c_coms">
+				
+			<div class="llll2">
+				Twoje komentarze
+			</div>			
+			
+			<div class="input">
+				<div class="input_name">Login: </div>
+				<input class="input_input" type="text" maxlength="128" value="" name="">
+				<div class="clear"></div>
+			</div>
+			
+			<div class="input">
+				<div class="input_name">Rejestracja: </div>
+				<input class="input_input" type="text" maxlength="128" value="" name="">
+				<div class="clear"></div>
+			</div>	
+			
+			<div class="input">
+				<div class="input_name">Ostatnie logowanie: </div>
+				<input class="input_input" type="text" maxlength="128" value="" name="">
+				<div class="clear"></div>
+			</div>	
+			
+			</div>											
+				
+	</div>
+			
+			
+																	
+					
+					
+
+		</div>
+		
+<script type="text/javascript">
+/*
+(function( $ ){
+	
+	$.fn.accStart = function() {
+			var urel = window.location.hash;
+		    if(urel.length == 0)
+	    {
+			$('#c_acc').show();
+			$('#buttons a[href$="#c_acc"]').addClass( "taken" );
+	    }
+	    else
+	    {
+	    	$(urel).show();
+	    	$('#buttons a[href$="' + urel + '"]').addClass( "taken" );
+	    }
+			
+	},
+	$.fn.mailValid = function() {
+		$('#m_er').text('');
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		if($("#n_mail1").val() < 1 || $("#n_mail2").val() < 1 || !re.test($("#n_mail1").val() ) || !re.test($("#n_mail2").val()) )
+		{
+			$('#m_er').text('Wprowadź poprawny adres e-mail.');
+			return false;
+		}
+		else
+		{
+			if($("#n_mail1").val() != $("#n_mail2").val())
+			{
+				$('#m_er').text('Podane adresy nie są identyczne.');
+				return false;
+			}	
+		}	
+	},
+	$.fn.passValid = function() {
+		$('#p_er').text('');
+		if($("#new_pass1").val().length < 5 || $("#new_pass2").val().length  < 5 || $("#new_old_pass").val().length < 1) 
+		{
+			$('#p_er').text('Wpisz hasła. (min. 6 znaków)');
+			return false;
+		}
+		else
+		{
+			if($("#new_pass1").val() != $("#new_pass2").val())
+			{
+				$('#p_er').text('Podane nowe hasła nie są identyczne.');
+				return false;
+			}	
+		}		
+		
+	};
+
+
+})( jQuery );
+*/
+</script>
+<script type="text/javascript">
+
+/*
+
+$( document ).ready().accStart() ;
+
+
+
+$('#buttons a').on('click', function(e) {
+		if(window.location.hash == $(this).attr('href')){
+
+				e.preventDefault() ;
+		}
+	$('#buttons a').each(function(){
+		$(this).removeClass( "taken" );
+	});
+	$(this).addClass( "taken" );
+	
+var bloczek = $('#whole_acc').find(e.target.getAttribute('href'));
+  
+
+    $('#whole_acc').children().each(function(){
+        if($(this).is(":visible")){
+            $(this).not(e.target.getAttribute('href')).slideUp(300);      
+        }
+    }).promise().done( function(){ 
+        bloczek.slideDown(300);
+
+    });
+
+});
+
+$('#conf_mail').click(function() {   
+		return $(this).mailValid();
+
+});
+
+$('#conf_pass').click(function() {
+		return $(this).passValid();
+
+});
+*/
+</script>
+
+
+
+
+
+
+
+
+

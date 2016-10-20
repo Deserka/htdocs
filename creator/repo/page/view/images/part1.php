@@ -1,0 +1,2 @@
+<img src='<?= $content["content"]["imageIMAGE_NUMBER"] ?>' alt='<?= $content["content"]["imageIMAGE_NUMBER_alt"] ?>' <?= !empty($content["content"]["imageIMAGE_NUMBER_title"]) ? 'title=\'$content["content"]["imageIMAGE_NUMBER_title"]\'':'' ?> />
+<!--* thumbs_part1 *-->

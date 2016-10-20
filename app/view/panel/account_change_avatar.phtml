@@ -1,0 +1,37 @@
+
+<section id="panel" class="panel">
+    
+    <div class="loginer">
+        <h2 class="panelh2">Zmień avatar</h2>
+        <h3 class="h3-login"><?= $_SESSION['user_panel_login'] ?></h3>
+        <div class="acc-avatar">
+            <img src="/public/images/panel/avatars/<?= $_SESSION['user_panel_avatar'] ?>" style="border-radius: 50%;  " />
+        </div>
+        
+<?php
+    include('parts/panel_menu.phtml');
+?>        
+
+     <form action="/panel-account-update-avatar-put" method="POST" enctype="multipart/form-data">
+        <label class="login-label">
+            Wybierz nowy avatar
+            <input class="input_input" type="file" maxlength="128"  name="avatar">
+        </label>     
+        <div class="middle width230"> 
+            <button type="submit" class="login-submit margin-top15">Zapisz</button>                    
+        </div>        
+            
+    </form>
+        <div class="acc-one-elem">
+            <h3>Uwaga!</h3>
+            <a class="avatar-info">
+                Obrazek musi mieć wymiar 65x65 pikseli.<br />
+                Obrazek może mieć maksymalnie 20KB<br />
+                (20 kilobajtów)<br />
+                Obrazek może mieć rozszerzenie<br />
+                .png, .jpg, .jpeg lub .gif.         <br />        
+            </a>
+        </div>    
+    
+</div>
+</section>

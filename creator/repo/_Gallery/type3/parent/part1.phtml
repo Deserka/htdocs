@@ -1,0 +1,22 @@
+    <div class='arrow'>
+        <a href='<!--* _URL_ADD_BASIC_ *-->'>
+            <!--* _CREATED_FUNDAMENTAL_NAME_ *-->
+        </a>        
+    </div>
+    <div class='arrow'>
+        <a href='<!--* _URL_ADD_BASIC_ *-->'>
+            <!--* _CREATED_MODULE_NAME_ *-->
+        </a>        
+    </div>
+<?php
+    if (!empty($content['inputs']['id'])) {
+?>
+       <div class='arrow'><?= (!empty($content['inputs']['title'])) ? $content['inputs']['title']:'' ?></div>
+       <div class='arrow'>Edycja treści</div> 
+<?php
+    } else {
+?>
+    <div class='arrow'><!--* _CREATED_MODULE_ADD_ *--></div>
+<?php
+    }    
+?>

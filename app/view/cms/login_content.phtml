@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	</head>
+<style>
+	body { 
+		padding: 0; margin: 0; font-family: 'Roboto', sans-serif; background: url('/public/images/cms/login/login-background.jpg') no-repeat center center fixed; -moz-background-size: cover; -webkit-background-size: cover; -o-background-size: cover;
+	    background-size: cover;
+	} 		
+	.cms-login { max-width: 300px; height: 230px; background: #353535; border-radius: 2px; margin: 90px auto 0; position: relative; z-index: 2; border: 1px solid grey; }	
+	.cms-login header { width: 230px;  margin: 0px auto; padding: 10px 0px; color: white; }
+	.cms-login .login-input { display: block; width: 230px; margin: 0px auto; padding: 7px 10px; margin-bottom: 10px; 
+								background: #fff url('/public/images/cms/login/login-icon.png') no-repeat right 5px center; border: none;  border-radius: 2px; }
+	.cms-login .password-input { display: block; width: 230px; margin: 0px auto; padding: 7px 10px; margin-bottom: 20px;
+					 			 background: #fff url('/public/images/cms/login/pass-icon.png') no-repeat right 5px center; border: none;  border-radius: 2px; 	}
+	.cms-login .submit-input { display: block; width: 230px; margin: 0px auto; padding: 7px 10px 7px 10px; background: #ff5852 url('/public/images/cms/login/key-icon.png') no-repeat right 5px center;  font-weight: 600; cursor: pointer;
+								 border: none; color: #fff;   }
+	.cms-login .forgot { text-align: center; margin-top: 10px; font-size: 80%; font-style: italic;   }
+	.cms-login .forgot a { color: #ff5852; text-decoration: none; }
+	.cms-login .forgot a:hover { text-decoration: underline; }
+	.error { color: #ff1d1d; font-weight: normal; font-size: 90%; display:block; }
+	.uhu { height: 100%; width: 100%; background: rgba(0, 0, 0, 0.8); position: absolute; z-index: 1; margin-top: -90px;  }
+	.logo { position: absolute; left:100px; top:-45px;  }
+</style>
+	<body>
+		<div class="uhu"></div>
+		<section class="cms-login">
+			<img class="logo" src="/public/images/cms/logo.png" />	
+			<header>
+				<?php if (isset($_SESSION['loginError'])) { echo '<a class="error">' . $_SESSION['loginError'] . '</a>'; } unset($_SESSION['loginError']);  ?>
+				LOGOWANIE
+			</header>
+			<form method="post" action="/cms-login">
+				<input type="text" class="login-input" placeholder="Login" name="login" />
+				<input type="password" class="password-input" placeholder="Hasło" name="password" />
+				<input type="submit" class="submit-input" value="Zaloguj" />
+				<div class="forgot">
+					<a href="">Zresetuj hasło</a>
+				</div>
+			</form>
+		</section>	
+	</body>
+</html>

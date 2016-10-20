@@ -1,0 +1,44 @@
+url{display: block;}
+
+urlset
+{
+	margin-left: 30px; 
+}
+urlset::before
+{
+	content: 'Mapa strony / Sitemap'; margin-left: -5px; font-size: 150%; 
+}
+url:nth-child(even) 
+{
+	
+}
+
+
+.home::before
+{
+	content: 'Strona główna'; display: block; color: orange; font-size: 120%;
+}
+
+
+
+.cats-first::before{
+	content: 'Kategorie'; display: block; color: orange; margin-top: 20px; font-size: 120%;
+}
+.cats loc
+{
+	margin-left: 20px; 
+}
+.subcats-first::before{
+	content: 'Podkategorie'; display: block; color: orange; margin-top: 20px; margin-left: 65px; font-size: 120%;
+}
+.subcats loc
+{
+	margin-left: 85px; 
+}
+.arts-first::before{
+	content: 'Artykuły'; display: block; color: red; margin-top: 20px; margin-left: 130px; 
+}
+.arts loc
+{
+	margin-left: 150px; 
+}

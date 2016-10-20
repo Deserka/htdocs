@@ -1,0 +1,28 @@
+<?php
+$content = $this -> get('content');
+/*
+$content['content']['meta_title'];
+$content['content']['meta_description'];
+$content['content']['meta_keywords'];
+$content['content']['meta_robots'];
+$content['content']['meta_author'];
+$content['content']['title'];
+*/
+?>
+		<meta name="title" content="<? if (isset($content['content']['meta_title']) && !empty($content['content']['meta_title'])) { echo $content['content']['meta_title']; } else {echo $content['content']['title'];} ?>"/>
+		<meta name="description" content="<? if (isset($content['content']['meta_description']) && !empty($content['content']['meta_description'])) { echo $content['content']['meta_description']; } ?>" />
+<?php
+    if(isset($content['content']['meta_keywords']) && !empty($content['content']['meta_keywords'])) {
+?>
+        <meta name="keywords" content="<?= $content['content']['meta_keywords'] ?>"/>
+<?php        
+    }
+    if(isset($content['content']['meta_robots']) && !empty($content['content']['meta_robots']) && $content['content']['meta_robots'] !== 'index, follow') {
+?>
+        <meta name="robots" content="<?= $content['content']['meta_robots'] ?>"/>
+<?php        
+    }
+?>
+		<meta name="language" content="<?= $_SESSION['page_lang'] ?>" />
+		<meta name="author" content="<? if (isset($content['content']['meta_author']) && !empty($content['content']['meta_author'])) { echo $content['content']['author']; } elseif(isset($content['content']['author']) && !empty($content['content']['author'])) {echo $content['content']['author'];} ?>"/>
+		<title><?= (isset($content['content']['meta_title']) && !empty($content['content']['meta_title']))? $content['content']['meta_title']:$content['content']['title'] ?></title>

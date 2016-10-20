@@ -1,0 +1,1 @@
+$ins->bindValue(':_CREATED_TABLE_PREFIX__parent_id', $parent_id, PDO::PARAM_STR);

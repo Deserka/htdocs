@@ -1,0 +1,1 @@
+$query->bindValue(':parent_id', $parent_id, PDO::PARAM_STR);

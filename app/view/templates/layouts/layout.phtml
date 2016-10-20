@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="<?= $_SESSION['page_lang'] ?>" dir="ltr">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<? $meta = $this -> meta_tags; (!empty($meta))? include $meta:'';?>
+        <link rel="stylesheet" href="/public/stylesheets/main.css" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico" />                
+        <link rel="shortcut icon" type="image/x-icon" href="/public/images/favicon.ico" />
+    </head>
+
+<body>
+
+<?php $main = $this -> main_part; (!empty($main))? include $main:'';?>       
+
+</body>
+</html>

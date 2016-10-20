@@ -1,0 +1,40 @@
+
+<section id="panel" class="panel">
+    
+    <div class="loginer">
+        <h2 class="panelh2">Zmień hasło</h2>
+        <h3 class="h3-login"><?= $_SESSION['user_panel_login'] ?></h3>
+        <div class="acc-avatar">
+            <img src="/public/images/panel/avatars/<?= $_SESSION['user_panel_avatar'] ?>" style="border-radius: 50%;  " />
+        </div>
+        
+<?php
+    include('parts/panel_menu.phtml');
+?>        
+
+     <form action="/panel-account-update-mail-put" method="POST">
+         
+        <label class="login-label">
+            Stare hasło
+            <input class="input_input" type="password" maxlength="128"  name="new_old_pass">
+        </label>         
+
+        <label class="login-label">
+            Nowe hasło
+            <input class="input_input" type="password" maxlength="128"  name="new_pass1" placeholder="(min. 6 max. 30 znaków)">
+        </label>  
+        
+        <label class="login-label">
+            Powtórz nowe hasło
+            <input class="input_input" type="password" maxlength="128"  name="new_pass2" placeholder="(min. 6 max. 30 znaków)">
+        </label>   
+                
+        <div class="middle width230"> 
+            <button type="submit" class="login-submit margin-top15">Zapisz</button>                    
+        </div>         
+        
+    </form>
+  
+    
+</div>
+</section>

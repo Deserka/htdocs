@@ -1,0 +1,1 @@
+		$view->set('allHomepage', $this -> all -> allHomepage());

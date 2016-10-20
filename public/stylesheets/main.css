@@ -1,0 +1,12 @@
+body 
+{
+	margin: 0px; padding: 0px; font-size:15px; font-family: 'Arimo', sans-serif; z-index: 1;
+}
+.clearfix:after
+{
+	content: ''; clear: both; display: block;
+}
+*, *::before, *::after 
+{
+	box-sizing: border-box;
+}

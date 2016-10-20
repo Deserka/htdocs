@@ -1,0 +1,38 @@
+        <div class="panel-menu-button" id="panel-menu-button-none">
+            <a class="">Menu</a>
+        </div> 
+<div class="panel-menu panel-menu-hide">
+        <div class="panel-menu-button-one">
+            <a href="panel-account">Konto</a>
+        </div>      
+        <div class="panel-menu-button-one">
+            <a href="panel-account-change">Zmień dane</a>
+        </div>      
+        <div class="panel-menu-button-one">
+            <a href="panel-account-change-avatar">Zmień avatar</a>
+        </div>          
+        <div class="panel-menu-button-one">
+            <a href="panel-account-change-mail">Zmień e-mail</a>
+        </div>    
+        <div class="panel-menu-button-one">
+            <a href="panel-account-change-pass">Zmień hasło</a>
+        </div>    
+        <div class="panel-menu-button-one">
+            <a href="panel-">Komentarze</a>
+        </div>                          
+</div> 
+
+<script>
+    document.getElementById('panel-menu-button-none').addEventListener("click", function(){
+        if(this.id === 'panel-menu-button-ok')
+        {
+            this.id = 'panel-menu-button-none';
+            document.getElementsByClassName('panel-menu')[0].className = 'panel-menu panel-menu-hide';            
+        }
+        else
+        {
+            this.id = 'panel-menu-button-ok';
+            document.getElementsByClassName('panel-menu')[0].className = 'panel-menu panel-menu-show';              
+        }
+    });      
+</script>

@@ -1,0 +1,66 @@
+<?php
+
+echo 'Kolejność: Config | Table | Router | Controller | Model | Folders | Menu | Add | Gallery<br />';
+
+require_once($_SERVER['DOCUMENT_ROOT']."/creator/lib/lead/lead.php");
+
+if (empty($_POST['cms_menu']) || empty($_POST['cms_model'])) {
+	echo 'Puste zmienne..';
+	exit;
+}
+
+$urlObject = new cms_url_createUrls($_POST['fundamental_url']);
+
+// Config
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/config_go.php');
+
+// Table returns string $table
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/table_go.php'); 
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/router_go.php');
+
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/controller_go.php');
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/model_go.php'); 
+
+// Folders
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/folders_go.php'); 
+
+// Menu
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/menu_go.php');
+
+// _Add
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/_Add_go.php');
+
+// _List
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/_List_go.php');
+
+// _Gallery
+if (isset($_POST['gallery_child1'])) {
+	include($_SERVER['DOCUMENT_ROOT'].'/creator/type3/_Gallery_go.php');
+}
+
+exit;
+// Page
+
+$page_url = $_POST['page_url'];
+$model_name = $_POST['cms_model'];
+$table_name = $_POST['cms_table'];
+$table_prefix = $_POST['cms_table'];
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/router_go.php'); 
+
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/controller_go.php'); 
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/model_go.php'); 
+
+// View
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/view_go.php'); 
+
+

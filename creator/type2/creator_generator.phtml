@@ -1,0 +1,91 @@
+<?php
+
+echo 'Kolejność: Config | Table | Router | Controller | Model | Folders | Menu | Add | Gallery<br />';
+
+require_once($_SERVER['DOCUMENT_ROOT']."/creator/lib/lead/lead.php");
+
+if (empty($_POST['cms_menu']) || empty($_POST['cms_model'])) {
+	echo 'Puste zmienne..';
+	exit;
+}
+
+$urlObject = new cms_url_createUrls();
+
+// Add Urls
+$urlAddBasic = $urlObject->setUrl(array($_POST['cms_url'])); // /cms/aktualnosci
+$urlAddBasic2 = $urlObject->setUrl(array($_POST['cms_url'], '([0-9]+)')); // /cms/aktualnosci/([0-9]+)
+$urlAddBasic3 = $urlObject->setUrl(array($_POST['cms_url'], '<?= $element[\'id\'] ?>'));
+$urlAddBasic4 = $urlObject->setUrl(array($_POST['cms_url'], '<?= \$content[\'parent_id\'] ?>'));
+$urlAddBasic5 = $urlObject->setUrl(array($_POST['cms_url'], '<?= $content[\'galleryParent_id\'] ?>'));
+$urlAddList = $urlObject->setUrl(array($_POST['cms_url'], 'list'));
+$urlAddAdd = $urlObject->setUrl(array($_POST['cms_url'], 'add'));
+$urlAddInsert = $urlObject->setUrl(array($_POST['cms_url'], 'insert'));
+$urlAddEdit = $urlObject->setUrl(array($_POST['cms_url'], '([0-9]+)', 'edit'));
+$urlAddEdit2 = $urlObject->setUrl(array($_POST['cms_url'], '<?= $element[\'id\'] ?>', 'edit'));
+$urlAddDelete = $urlObject->setUrl(array($_POST['cms_url'], '([0-9]+)', 'delete'));
+$urlAddDelete2 = $urlObject->setUrl(array($_POST['cms_url'], '<?= $element[\'id\'] ?>', 'delete'));
+$urlAddQueue = $urlObject->setUrl(array($_POST['cms_url'], 'queue'));
+
+// Gallery Urls
+$urlGalleryBasic = $urlObject->setUrlGallery($urlAddBasic2);
+$urlGalleryBasic2 = $urlObject->setUrlGallery($urlAddBasic2, '([0-9]+)');
+$urlGalleryBasic3 = $urlObject->setUrlGallery($urlAddBasic3);
+$urlGalleryBasic4 = $urlObject->setUrlGallery($urlAddBasic4);
+$urlGalleryInsert = $urlObject->setUrlGallery($urlAddBasic2, 'insert');
+$urlGalleryInsert2 = $urlObject->setUrlGallery($urlAddBasic4, 'insert');
+$urlGalleryEdit = $urlObject->setUrlGallery($urlAddBasic2, 'edit', '([0-9]+)');
+$urlGalleryUpdate = $urlObject->setUrlGallery($urlAddBasic2, 'update', '([0-9]+)');
+$urlGalleryDelete = $urlObject->setUrlGallery($urlAddBasic2, 'delete', '([0-9]+)');
+$urlGalleryDelete2 = $urlObject->setUrlGallery($urlAddBasic2,  'delete', '<?= $images[\'id\'] ?>');
+$urlGalleryDelete3 = $urlObject->setUrlGallery($urlAddBasic4,  'delete', '<?= $images[\'id\'] ?>');
+$urlGalleryQueue = $urlObject->setUrlGallery($urlAddBasic2, 'queue');
+
+// Config
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/config_go.php');
+
+// Table returns string $table
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/table_go.php'); 
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/router_go.php');
+
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/controller_go.php');
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/model_go.php'); 
+
+// Folders
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/folders_go.php'); 
+
+// Menu
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/menu_go.php');
+
+// _Add
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/_Add_go.php');
+
+// _List
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/_List_go.php');
+
+// _Gallery
+if (isset($_POST['gallery'])) {
+	include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/_Gallery_go.php');
+}
+
+// Page
+
+// Config
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/config_go.php');
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/router_go.php');
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/controller_go.php'); 
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/model_go.php'); 
+
+// View
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type2/page/view_go.php');
+
+

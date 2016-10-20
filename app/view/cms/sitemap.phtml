@@ -1,0 +1,79 @@
+<?php
+    $content = $this -> get('content');
+?>
+<!--
+    Images path
+-->
+<div class="contenerForPath">
+    <div class="arrow">
+        <a href="/cms-sitemap">
+            Mapa strony
+        </a>        
+    </div>           
+</div>
+
+<!--
+    Buttons -> Add new site
+-->
+<div class="upper-buttons">
+    <a href="/cms-generate-sitemap" class="first-button"><button class="add_button" type="button"><?= ($content['exist'] === false) ? 'Wygeneruj mapę strony':'Aktualizuj mapę strony' ?></button></a>          
+</div>
+
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if(!empty($_SESSION['sitemap']))
+    {
+?>
+        <div class="show-pass">
+            <a class="show-errors-a">Mapa strony została wygenerowana.</a>
+        </div>  
+<?php  
+         //unset($_SESSION['sitemap']);  
+    }
+?>
+
+
+
+<!--------------------------------------------------------------
+    Name of page
+-->   
+<div class="name-of-page"> 
+    <h1>
+        Mapa strony
+    </h1>
+</div> 
+
+<div class="div-list">
+<?php
+    if($content['exist'] === false){  
+?>    
+    <a class="lackof-com padding-left-15">Brak mapy strony.</a><br />
+    <a class="lackof-com padding-left-15">Kliknij Wygeneruj mapę strony.</a>
+<?php
+    }
+    else {
+?>
+    <a class="lackof-com padding-left-15">Liczba podstron w pliku: <?= $content['urls'] ?>.</a><br />
+    <a class="lackof-com padding-left-15" href="">Pobierz mapę strony.</a>
+<?php
+    }
+?>
+<h3 class="padding-left-15">Błędy znalezione na stronie:</h3>
+<?php
+    if(!empty($_SESSION['sitemap']['site'][0])){
+        for($i=0; $i <= count($_SESSION['sitemap']['site']); $i++){
+?>
+    <p class="padding-left-15">
+        URL: <?= $_SESSION['sitemap']['url'][$i] ?><br />
+        Znaleziony na podstronie: <?= $_SESSION['sitemap']['site'][$i] ?>
+    </p>
+<?php            
+        }
+    }
+    unset($_SESSION['sitemap']);
+?>
+</div>
+
+<script src="js/cms/cms_scripts.js"></script>

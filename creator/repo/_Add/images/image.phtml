@@ -1,0 +1,148 @@
+<!---------------------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2>_CREATED_NAME_</h2>
+</div>    
+
+<?php
+    if( isset( $content['inputs']['temp_image_NUMBER_OF_IMAGE__path'] ) && !empty ( $content['inputs']['temp_image_NUMBER_OF_IMAGE__path'] ) )
+    {
+?>
+<!--
+    TEMPORARY IMAGE
+    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        Wybrane zdjęcie (niezapisane):
+    </div>
+    <div class='one-block-input'>
+        <img src='<?= $content['inputs']['temp_image_NUMBER_OF_IMAGE__path'] ?>' />
+    </div>          
+</div>  
+<!--
+    Path to the image
+-->  
+<input type='hidden' name='temp_image_NUMBER_OF_IMAGE__path' id='temp_image_NUMBER_OF_IMAGE__path' value='<?= $content['inputs']['temp_image_NUMBER_OF_IMAGE__path'] ?>' />
+<input type='hidden' name='temp_image_NUMBER_OF_IMAGE_' id='temp_image_NUMBER_OF_IMAGE_' value='<?= $content['inputs']['temp_image_NUMBER_OF_IMAGE_'] ?>' />
+
+<?php
+    }
+    if( isset( $content['inputs']['image_NUMBER_OF_IMAGE_'] ) && !empty($content['inputs']['image_NUMBER_OF_IMAGE_']) || isset( $content['inputs']['current_image_NUMBER_OF_IMAGE_'] ) && !empty($content['inputs']['current_image_NUMBER_OF_IMAGE_']) )
+    {
+?>
+<!--
+    CURRENT SAVED IMAGE    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Current image']?> (zapisane):
+    </div>
+    <div class='one-block-input'>
+        <img src='<?= (isset($content['inputs']['image_NUMBER_OF_IMAGE_'])) ?  $content['inputs']['image_NUMBER_OF_IMAGE_']:'' ?><?= (isset($content['inputs']['current_image_NUMBER_OF_IMAGE_'])) ?  $content['inputs']['current_image_NUMBER_OF_IMAGE_']:'' ?>' />
+    </div>          
+</div>  
+<!--
+    Path to the image
+-->  
+<input type='hidden' name='current_image_NUMBER_OF_IMAGE_' id='current_image_NUMBER_OF_IMAGE_' value='<?= (isset($content['inputs']['image_NUMBER_OF_IMAGE_'])) ?  $content['inputs']['image_NUMBER_OF_IMAGE_']:'' ?><?= (isset($content['inputs']['current_image_NUMBER_OF_IMAGE_'])) ?  $content['inputs']['current_image_NUMBER_OF_IMAGE_']:'' ?>' />
+<?php
+    }
+?>
+<!--
+    IMAGE
+    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+<?php
+    if( isset( $content['inputs']['temp_image_NUMBER_OF_IMAGE_'] ) &&  $content['inputs']['temp_image_NUMBER_OF_IMAGE_'] === 1 || !empty($content['inputs']['image_NUMBER_OF_IMAGE_']))
+    {
+?> 
+        <?= $lang['Change image']?>:
+<?php
+    }
+    else 
+    {
+?>
+        <?= $lang['Add image']?>:
+<?php
+    }
+?>                  
+    </div>
+    <div class='one-block-input'>
+        <input type='file'  name='image_NUMBER_OF_IMAGE_' id='image_NUMBER_OF_IMAGE_' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>    
+    
+<!--
+    IMAGE ALT
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Image description']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_NUMBER_OF_IMAGE__alt' id='image_NUMBER_OF_IMAGE__alt' class='input580 count-it' maxlength='300'  value='<?= (!empty($content['inputs']['image_NUMBER_OF_IMAGE__alt'])) ? $content['inputs']['image_NUMBER_OF_IMAGE__alt']:'' ?>' />
+    </div>  
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_alt']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->           
+</div>    
+
+<!--
+    IMAGE TITLE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Image title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_NUMBER_OF_IMAGE__title' id='image_NUMBER_OF_IMAGE__title' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['image_NUMBER_OF_IMAGE__title'])) ? $content['inputs']['image_NUMBER_OF_IMAGE__title']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_title']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>  
+
+<!--
+    FILE NAME
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['File name']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_NUMBER_OF_IMAGE__file_name' id='image_file_name' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['image_NUMBER_OF_IMAGE__file_name'])) ? $content['inputs']['image_NUMBER_OF_IMAGE__file_name']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_file_name']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>  

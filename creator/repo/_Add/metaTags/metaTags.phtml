@@ -1,0 +1,111 @@
+<!------------------------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Meta tags']?></h2>
+</div>       
+<!--
+    META TITLE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_title' id='meta_title' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['meta_title'])) ? $content['inputs']['meta_title']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_title']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>       
+<!--
+    DESCRIPTION
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_description' id='meta_description' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['meta_description'])) ? $content['inputs']['meta_description']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_description']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>         
+<!--
+    KEYWORDS
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Keywords']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_keywords' id='meta_keywords' class='input580 count-it' maxlength='300'  value='<?= (!empty($content['inputs']['meta_keywords'])) ? $content['inputs']['meta_keywords']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_keywords']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>          
+<!--
+    AUTHOR
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Author']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_author' id='meta_author' class='input580 count-it' maxlength='300'  value='<?= (!empty($content['inputs']['meta_author'])) ? $content['inputs']['meta_author']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_author']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>       
+<!--
+    ROBOTS
+    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Robots']?>:
+    </div>
+    <div class='one-block-input'>
+        <select name='meta_robots' class='select200'>
+            <option value='index, follow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'index, follow') ? 'selected':'' ?> >index, follow</option>
+            <option value='index, nofollow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'index, nofollow') ? 'selected':'' ?> >index, nofollow</option>
+            <option value='noindex, nofollow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'noindex, nofollow') ? 'selected':'' ?> >noindex, nofollow</option>
+            <option value='noindex, follow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'noindex, follow') ? 'selected':'' ?> >noindex, follow</option>
+        </select>
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_robots']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>  

@@ -1,0 +1,17 @@
+		<div class="cookie_info" id="c_info">
+			<a class="c_first">Ta strona używa cookies.</a>&nbsp;&nbsp;&nbsp;
+			<a class="c_second" href="http://www.google.pl">Opuść stronę</a>&nbsp;&nbsp;&nbsp;
+			<a class="c_third"    >Zostaję na stronie</a>	&nbsp;&nbsp;&nbsp;
+			<a class="c_fourth" href="/kontakt">Dowiedz się więcej</a>&nbsp;&nbsp;&nbsp;
+		</div>
+		<script>
+			var setter = querSelector('#c-info .c_third').onclick = function()
+			{
+				alert('a');
+			}
+			var checker = checkCookie('enter');
+			if(checker == '0')
+			{
+				document.getElementById("c_info").style.display = "block";
+			}
+		</script>

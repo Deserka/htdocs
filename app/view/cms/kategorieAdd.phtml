@@ -1,0 +1,260 @@
+<?php   
+    $content = $this -> get('content');
+?>
+<!--
+    Start form
+-->
+<form enctype='multipart/form-data' action='/cms/produkty/kategorie/insert' method='post' id='form'>   
+<!--
+    Define is it edit or adding new page
+-->   
+<?php
+    if(!empty($content['inputs']['id']))
+    {
+?>
+       <input type='hidden' name='id' id='id' value='<?= $content['inputs']['id'] ?>' /> 
+<?php
+    }
+?>
+<!--
+    Images path
+-->
+<div class='contenerForPath'>
+    <div class='arrow'>
+        <a href='/cms/produkty/kategorie/list'>
+            Produkty
+        </a>        
+    </div>
+    <div class='arrow'>
+        <a href='/cms/produkty/kategorie/list'>
+            Kategorie
+        </a>        
+    </div>
+<?php
+    if (!empty($content['inputs']['id'])) {
+?>
+       <div class='arrow'><?= (!empty($content['inputs']['title'])) ? $content['inputs']['title']:'' ?></div>
+       <div class='arrow'>Edycja treści</div> 
+<?php
+    } else {
+?>
+    <div class='arrow'>Dodaj kategorię</div>
+<?php
+    }    
+?>
+</div>
+<!--
+    Buttons -> Save and Back and Gallery
+-->
+<div class='upper-buttons'>
+    <a href='<?= $_SERVER['HTTP_REFERER'] ?>' class='first-button'><button class='add_button' type='button'><?= $lang['Back']?></button></a>
+    <button class='add_button second-button' type='submit'><?= $lang['Save']?></button> 
+</div>
+<!--
+    Errors
+-->
+<?php
+    if(!empty($content['errors']))
+    {
+?>
+        <div class='show-errors'>
+<?php
+        foreach($content['errors'] as $error)
+        {
+?>
+            <a class='show-errors-a'><?= $error ?></a>
+<?php            
+        }
+?>
+        </div>  
+<?php             
+    }
+?>
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if (!empty($_SESSION['pass'])) {
+?>
+        <div class='show-pass'>
+            <a class='show-errors-a'><?= $_SESSION['pass'] ?></a>
+        </div>  
+<?php  
+         unset($_SESSION['pass']);  
+    }
+?>
+<!--
+    Name of page
+-->   
+<div class='name-of-page'> 
+    <h1>
+<?php
+    if (!empty($content['inputs']['id'])) {
+?>
+		Edycja <?= $content['inputs']['title'] ?>
+<?php
+    } else {       
+?>	    
+    	Nowa kategoria
+<?php
+    }    
+?>
+    </h1>
+</div> 
+<!--------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Main elements']?></h2>
+</div>
+<!--
+    TITLE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='title' id='title' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['title'])) ? $content['inputs']['title']:'' ?>' />
+    </div>    
+</div>
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        Ukryj:
+    </div>
+    <div class='one-block-input'>
+        <select name='hide' class='select100'>
+            <option value='0' <?= ( isset($content['inputs']['hide']) && $content['inputs']['hide'] == '0' ? 'selected':'') ?> >Nie</option>
+            <option value='1' <?= ( isset($content['inputs']['hide']) && $content['inputs']['hide'] == '1' ? 'selected':'') ?> >Tak</option>
+        </select>
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png'>
+        <div class='div_note' id='div_header_note'>
+            Czy podstrona ma być ukryta w menu/witrynie?        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<!------------------------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Meta tags']?></h2>
+</div>       
+<!--
+    META TITLE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_title' id='meta_title' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['meta_title'])) ? $content['inputs']['meta_title']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_title']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>       
+<!--
+    DESCRIPTION
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_description' id='meta_description' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['meta_description'])) ? $content['inputs']['meta_description']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_description']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>         
+<!--
+    KEYWORDS
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Keywords']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_keywords' id='meta_keywords' class='input580 count-it' maxlength='300'  value='<?= (!empty($content['inputs']['meta_keywords'])) ? $content['inputs']['meta_keywords']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_keywords']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>          
+<!--
+    AUTHOR
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Author']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='meta_author' id='meta_author' class='input580 count-it' maxlength='300'  value='<?= (!empty($content['inputs']['meta_author'])) ? $content['inputs']['meta_author']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_author']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>       
+<!--
+    ROBOTS
+    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Robots']?>:
+    </div>
+    <div class='one-block-input'>
+        <select name='meta_robots' class='select200'>
+            <option value='index, follow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'index, follow') ? 'selected':'' ?> >index, follow</option>
+            <option value='index, nofollow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'index, nofollow') ? 'selected':'' ?> >index, nofollow</option>
+            <option value='noindex, nofollow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'noindex, nofollow') ? 'selected':'' ?> >noindex, nofollow</option>
+            <option value='noindex, follow' <?= ( isset($content['inputs']['meta_robots']) && $content['inputs']['meta_robots'] === 'noindex, follow') ? 'selected':'' ?> >noindex, follow</option>
+        </select>
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_meta_robots']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>  
+<!--
+    BUTTONS
+-->     
+<div class='downer-buttons'>  
+    <a href='<?= $_SERVER['HTTP_REFERER'] ?>' class='first-button'><button class='add_button' type='button'><?= $lang['Back']?></button></a>
+    <button class='add_button second-button' type='submit'><?= $lang['Save']?></button> 
+    <button class='add_button third-button' type='submit'><?= $lang['Save']?></button>  
+</div>  <!-- main_content_content_second_buttons -->  			
+</form>	
+<script src='/js/cms/cms_scripts.js'></script>

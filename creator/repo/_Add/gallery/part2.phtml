@@ -1,0 +1,23 @@
+<!--
+    GALLERY
+    Box - select
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Gallery']?>:
+    </div>
+    <div class='one-block-input'>
+        <select name='show_gallery' class='select100'>
+            <option value='0' <?= ( isset($content['inputs']['show_gallery']) && $content['inputs']['show_gallery'] === '0') ? 'selected':'' ?> >Brak</option>
+            <option value='1' <?= ( isset($content['inputs']['show_gallery']) && $content['inputs']['show_gallery'] === '1') ? 'selected':'' ?> >Tak</option>
+        </select>
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_gallery']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>

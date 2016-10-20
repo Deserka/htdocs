@@ -1,0 +1,427 @@
+<?php   
+    $content = $this -> get('content');    
+?>
+<!--
+    Images path
+-->
+<div class='contenerForPath'>
+    <div class='arrow'>
+        <a href=''>
+        </a>        
+    </div>
+    <div class='arrow'>
+        <a href=''>
+            Kategorie
+        </a>        
+    </div>
+<?php
+    if (!empty($content['inputs']['id'])) {
+?>
+       <div class='arrow'><?= (!empty($content['inputs']['title'])) ? $content['inputs']['title']:'' ?></div>
+       <div class='arrow'>Edycja treści</div> 
+<?php
+    } else {
+?>
+    <div class='arrow'></div>
+<?php
+    }    
+?>	
+</div>
+<!--
+    Buttons -> Save and Back
+-->
+<div class='upper-buttons'>
+    <a class='first-button'><button class='add_button' id='gallery-add-new-image-button' type='button'><?= $lang['Add new image']  ?></button></a>
+    <a href="_url_this_edit_" class='third-button'><button class='add_button' type='button'>Przejdź do edycji treści</button></a>
+</div>
+<!--
+    Change queue
+-->
+        <div class='show-queue'>
+            <a>Kolejność zmieniona</a>
+        </div>  
+<!--
+    Errors
+-->
+<?php
+    if (!empty($content['errors'])) {
+?>
+        <div class='show-errors'>
+<?php
+        foreach ($content['errors'] as $error) {
+?>
+            <a class='show-errors-a'><?= $error ?></a>
+<?php            
+        }
+?>
+        </div>  
+<?php             
+    }
+?>
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if(!empty($_SESSION['pass']))
+    {
+?>
+        <div class='show-pass'>
+            <a class='show-errors-a'><?= $_SESSION['pass'] ?></a>
+        </div>  
+<?php  
+         unset($_SESSION['pass']);  
+    }
+?>
+<!--
+    Name of category
+-->   
+<div class='name-of-page'> 
+    <h1>
+        Galeria   <i></i>
+    </h1>
+</div> 
+<div id='gallery-add-new-image'>
+<!--------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Add new image']?></h2>
+</div>
+<!-----------------------------------------------------------------------------------------
+    Start form
+-->
+<form enctype='multipart/form-data' action='/cms/produkty/kategorie/<?= $content['galleryParent_id']?>/gallery/insert' method='post'>
+ <!--
+    PAGE ID
+-->  
+        <input type='hidden' name='id' id='id' value='<?= $content['galleryParent_id'] ?>' />
+<!--
+    IMAGE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Choose image']?>:              
+    </div>
+    <div class='one-block-input'>
+        <input required type='file'  name='image' id='image' />
+    </div>         
+</div>    
+<!--
+    TITLE of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_title' id='image_title' class='input580 count-it' maxlength='300' value='<?= ( isset( $content['status'] ) && $content['status'] === 'error' && isset($content['inputs']['image_title']) ) ? $content['inputs']['image_title']:'' ?>' />
+    </div>    
+</div>
+<!--
+    DESCRIPTION of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_description' id='image_description' class='input580 count-it' maxlength='300'  value='<?= ( isset( $content['status'] ) && $content['status'] === 'error' && isset($content['inputs']['image_description']) ) ? $content['inputs']['image_description']:'' ?>' />
+    </div>        
+</div>
+<!--
+    META TITLE of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?> (meta):
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_meta_title' id='image_meta_title' class='input580 count-it' maxlength='300'  value='<?= ( isset( $content['status'] ) && $content['status'] === 'error' && isset($content['inputs']['image_meta_title']) ) ? $content['inputs']['image_meta_title']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_title']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<!--
+    META ALT of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?> (meta):
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_meta_description' id='image_meta_description' class='input580 count-it' maxlength='300'  value='<?= ( isset( $content['status'] ) && $content['status'] === 'error' && isset($content['inputs']['image_meta_description']) ) ? $content['inputs']['image_meta_description']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_alt']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<!--
+    FILE NAME of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['File name']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='image_file_name' id='image_file_name' class='input580 count-it' maxlength='300'  value='<?= ( isset( $content['status'] ) && $content['status'] === 'error' && isset($content['inputs']['image_file_name']) ) ? $content['inputs']['image_file_name']:'' ?>' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_file_name']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<div class='independent-button'>
+    <button class='add_button first-button' type='submit'><?= $lang['Save']?></button>  
+</div>
+<!--
+    End form
+-->
+</form>
+</div> <!-- id new image -->
+<div id='gallery-edit-image'>
+<!--------------------------------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Image edition']?></h2>
+</div>
+<!-----------------------------------------------------------------------------------------
+    Start form
+-->
+<form enctype='multipart/form-data' action='/cms/produkty/kategorie/<?= $content['galleryParent_id']?>/gallery/update' method='post' id='form'>
+<!--
+    Editing image
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Image edition']?>:
+    </div>
+    <div class='one-block-input'>
+        <img id='edit-image-thumb' src='' />
+    </div>          
+</div>  
+    <input type='hidden'  name='edit-id' id='edit-id' value='<?= $content['id'] ?>' />
+    <input type='hidden'  name='parent-id' id='parent-id' value='<?= $content['parent_id'] ?>' />
+<!--
+    TITLE of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='edit-title' id='edit-title' class='input580 count-it' maxlength='300' value='' />
+    </div>    
+</div>
+<!--
+    DESCRIPTION of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='edit-description' id='edit-description' class='input580 count-it' maxlength='300'  value='' />
+    </div>        
+</div>
+<!--
+    META TITLE of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?> (meta):
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='edit-meta-title' id='edit-meta-title' class='input580 count-it' maxlength='300'  value='' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_title']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<!--
+    META ALT of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Description']?> (meta):
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='edit-meta-description' id='edit-meta-description' class='input580 count-it' maxlength='300'  value='' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_alt']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<!--
+    FILE NAME of image
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['File name']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='edit-file-name' id='edit-file-name' class='input580 count-it' maxlength='300'  value='' />
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png' />
+        <div class='div_note' id='div_header_note'>
+            <?= $lang['mark_image_file_name']?>
+        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+<div class='independent-button'>
+    <button class='add_button first-button' type='submit'><?= $lang['Save']?></button>  
+</div>
+<!--
+    End form
+-->
+</form>
+</div> <!-- id edit image -->
+<!--------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2>Zdjęcia</h2>
+</div>
+<!--
+    ALL IMAGES
+-->  
+<div class='gallery-all-images clearfix' id='sortable'>
+<?php
+    if (empty($content['images'])) {
+?>
+    <a class='no-image-com'>Brak zdjęć w galerii.</a>
+<?php    
+    }
+    else {
+        foreach ($content['images'] as $images) {
+?>
+    <div id='idek-<?= $images['id'] ?>' class='gallery-one-image '>
+        <div class='main-image-div'>
+           <img class='main-image' src='<?= $images['cmsthumb'] ?>' /> 
+        </div> 
+        <div class='one-image-div-title'>
+            <a class='title'><?= $images['title'] ?></a>
+        </div>
+        <a id='<?= $images['id'] ?>'  class='gallery-image-edit edit-one-image'><img src='/public/images/cms/edit_icon.png' title='Edytuj' /></a>
+        <a href='/cms/produkty/kategorie/<?= $content['galleryParent_id']?>/gallery/<?= $images["id"] ?>/delete' class='gallery-image-delete confirm'><img src='/public/images/cms/delete_icon.png' title='Usuń' /></a>
+        <a class='gallery-image-move'><img src='/public/images/cms/move_icon.png' title='Zmień kolejność' /></a>
+    </div>
+<?php
+        }  
+    } 
+?>       
+</div>
+<script>
+$('.confirm').click(function(){
+	return confirm('Na pewno?');
+});
+    //Edit photo
+    $('.edit-one-image').click(function(){
+        idek = $(this).attr('id');
+        $.ajax({
+                type     : 'POST',
+                data     : {'idek' : idek},
+                url      : '/cms/produkty/kategorie/<?= $content['galleryParent_id']?>/gallery/edit',
+                dataType: 'json',
+                success : function(data) {
+                    if($('#gallery-add-new-image').css('display') == 'block') {
+                        $('#gallery-add-new-image').slideUp('fast');
+                    }     
+                    if($('#gallery-edit-image').css('display') == 'none') {
+                        $('#gallery-edit-image').slideDown('fast');                 
+                    }  
+                    $('#edit-id').val(data['id']);
+                    $('#edit-title').val(data['title']);
+                    $('#edit-description').val(data['content']);
+                    $('#edit-meta-title').val(data['meta_title']);
+                    $('#edit-meta-description').val(data['alt']);
+                    $('#edit-file-name').val(data['file_name']);
+                    $('#edit-image-thumb').attr('src', data['cmsthumb']);
+                    $('html, body').animate({ scrollTop: $('#gallery-edit-image').offset().top }, 'slow');                                  
+                },
+                complete : function(r) { },
+                error:    function(error) {  console.log(error);       }
+                });
+    });
+</script>
+<script src='js/cms/cms_scripts.js'></script>
+<?php
+    if( isset ( $content['status'] ) && $content['status'] === 'error')
+    {
+?>
+        <script>
+        //error apperas when user wanted to add new photo (for example didnt choose image)
+$( document ).ready(function() {
+    $( '#gallery-add-new-image' ).css('display', 'block');
+});                       
+        </script>
+<?php
+    }  
+?>
+<script>
+	// Hide error	
+	setTimeout(function(){ $('.show-errors').slideUp(); }, 3000);
+	setTimeout(function(){ $('.show-pass').slideUp(); }, 3000);
+    $('#gallery-add-new-image-button').click(function(){
+        $( '#gallery-add-new-image' ).toggle('fast');
+                    if($('#gallery-edit-image').css('display') == 'block') {
+                        $('#gallery-edit-image').slideUp('fast');                 
+                    }          
+    });
+$('#sortable').sortable({
+    placeholder: 'placeholder2',
+    update: function (event, ui) {
+        var data = $(this).sortable('serialize');
+        // POST to server using $.post or $.ajax
+        $.ajax({
+            data: data,
+            type: 'POST',
+            url: '_URL_GALLERY_QUEUE_',
+            success : function(data) 
+            {
+                    $('.show-queue').slideDown('fast');
+                    setInterval(function(){ $('.show-queue').slideUp('fast'); }, 3000);
+            }
+        });
+    }
+});  
+</script>

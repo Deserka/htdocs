@@ -1,0 +1,127 @@
+<?php
+    $content = $this -> get('content');   
+?>
+<!--
+    Images path
+-->
+<div class='contenerForPath'>	
+    <div class='arrow'>
+        <a href='/cms/aktualnosci/list'>
+            Aktualności
+        </a>        
+    </div>  
+</div>
+<!--
+    Buttons -> Add new site
+-->
+<div class='upper-buttons'>
+	 <a href='/cms/aktualnosci/add' class='first-button'><button class='add_button' type='button'>Dodaj aktualność</button></a>                 
+</div>
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if (!empty( $_SESSION['pass'])) {
+?>
+        <div class='show-pass'>
+            <a class='show-errors-a'><?= $_SESSION['pass'] ?></a>
+        </div>  
+<?php  
+         unset( $_SESSION['pass'] );  
+    }
+?>
+<div style='display: none;' class='show-queue'>
+	<a>Kolejność zmieniona</a>
+</div>
+<!--------------------------------------------------------------
+    Name of page
+-->   
+<div class='name-of-page'> 
+    <h1>
+    	Aktualności
+    </h1>
+</div> 
+<div class='div-list'>
+<?php
+if(empty($content['list'])) {
+?>
+    <a class='lackof-com'>Brak.</a>
+<?
+} else {
+?>
+    <div id='sortable'> 
+<?php       
+$x = 1;
+    foreach ($content['list'] as $element) {
+?>  
+    <div id='idek-<?= $element['id']  ?>' class='div-list-one-element pagination-one-list clearfixer'>
+        <div class='dloe-no'>
+            <a><?= $x ?></a>
+        </div>
+        <div class='dloe-delete'>
+            <a class='confirm' href='/cms/aktualnosci/<?= $element['id'] ?>/delete'><?= $lang['Delete']?></a>
+        </div> 
+        <div class='dloe-name'>
+            <?= $element['title']  ?>
+        </div>
+<div class='dloe-gallery'>
+	<a href='/cms/aktualnosci/<?= $element['id'] ?>/gallery'><?= $lang['Gallery']?></a>
+</div>
+        <div class='dloe-edit'>
+            <a href='/cms/aktualnosci/<?= $element['id'] ?>/edit'><?= $lang['Edition']?></a>
+        </div>
+    </div><!-- div-list-one-element --> 
+<?php
+    $x++;
+    }
+}
+?>  
+</div>    
+<?php
+    $amountOfButtons = ceil((count($content['list'])/15));
+    if ($amountOfButtons > 1) {
+?>
+<div class='pagination-buttons'>
+<?php
+		for ($a=1; $a<=$amountOfButtons; $a++) {          
+?>
+			<span><?= $a ?></span>
+<?php
+    	}
+?>
+</div>
+<?php
+    }
+?>
+<script>
+$('.confirm').click(function(){
+	return confirm('Na pewno?');
+});
+$('#show-all').click(function(){
+    $('.div-list-one-element').show();
+    $('.pagination-buttons').hide();
+});    
+$(function() {
+	$('#sortable').sortable( {
+		placeholder: 'placeholder',
+        update: function (event, ui) {
+        var elements =  $('#sortable .dloe-no').length;
+        for (var x = 0; x <= elements; x++) {
+        	$('#sortable .dloe-no:eq( '+ x +' )').text(x+1);
+        }
+        var data = $(this).sortable('serialize');
+        $.ajax({
+			data: data,
+            type: 'POST',
+            url: '/cms/aktualnosci/queue',
+            success : function(data) {
+				$('.show-queue').slideDown('fast');
+                setInterval(function(){ $('.show-queue').slideUp('fast'); }, 3000);
+            }
+        });
+        }
+	});  
+    $( '#sortable' ).disableSelection();
+});
+</script>
+<script src='/js/cms/cms_scripts.js'></script>

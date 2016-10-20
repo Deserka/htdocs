@@ -1,0 +1,64 @@
+<?php
+$back = $this -> get('back');
+if(!empty($back))
+{
+    $warning = $back[1];
+    $data = $back[2];
+}
+?>                 
+                    
+                    
+
+
+<section id="panel" class="panel">
+
+    <div class="loginer">
+        <?=(!empty($warning['login'])) ? '<div class="login-input-error info-element">'.$warning['login'].'</div>':''?>    
+        <?=(!empty($warning['password'])) ? '<div class="login-input-error info-element">'.$warning['password'].'</div>':''?> 
+
+   
+       <h1>Logowanie</h1>
+       
+       
+       <form action="/panel-login" method="POST">                      
+        <label class="login-label">
+
+            Login <input class="login-input" name="login" type="text" maxlength="128" value="<?=(!empty($data['login'])) ? $data['login']:''?>">
+            
+        </label>
+        <label class="login-label">
+            Hasło <input class="login-input" type="password" maxlength="128" value="" name="password">
+        </label>
+        <div class="middle width230">
+            <input class="remember" type="checkbox" name="remember-my-login-checkbox" id="remember-my-login-checkbox" />
+            <label for="remember-my-login-checkbox">Zapamiętaj mnie     </label> 
+        </div>
+        <div class="middle width230">
+            <button class="login-submit margin-top15">Zaloguj</button> 
+            <div class="register-button margin-top15 margin-left10">
+                <a class="" href="/panel-registration">Zarejestruj się</a>
+            </div>  
+        </div>
+        
+        </form>
+        
+                    <div class="login-forgot-password">
+                        <a href="/panel-password_reset" class="login-forgot-password">Nie pamiętam hasła</a>
+                    </div>      
+                   
+        
+
+    </div>
+    
+</section>    
+    
+    
+    
+    
+    
+    
+    
+
+
+	
+

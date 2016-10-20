@@ -1,0 +1,157 @@
+<?php   
+    $content = $this -> get('content');
+?>
+
+<!--
+    Start form
+-->
+<form enctype='multipart/form-data' action='/cms/_CREATED_URL_/insert' method='post' id='form'>   
+
+<!--
+    Define is it edit or adding new page
+-->   
+<?php
+    if(!empty($content['inputs']['id']))
+    {
+?>
+       <input type='hidden' name='id' id='id' value='<?= $content['inputs']['id'] ?>' /> 
+<?php
+    }
+?>
+
+<!--
+    Images path
+-->
+<div class='contenerForPath'>
+    <div class='arrow'>
+        <a href='/cms/_CREATED_URL_'>
+            _CREATED_MODULE_NAME_
+        </a>        
+    </div>  
+	<div class='arrow'>Edycja treści</div> 					
+</div>
+
+
+<!--
+    Buttons -> Save and Back and Gallery
+-->
+<div class='upper-buttons'>
+    <a href='<?= $_SERVER['HTTP_REFERER'] ?>' class='first-button'><button class='add_button' type='button'><?= $lang['Back']?></button></a>
+    <button class='add_button second-button' type='submit'><?= $lang['Save']?></button> 
+    
+_GALLERY_PART1_      
+</div>
+
+<!--
+    Errors
+-->
+
+<?php
+    if(!empty($content['errors']))
+    {
+?>
+        <div class='show-errors'>
+<?php
+        foreach($content['errors'] as $error)
+        {
+?>
+            <a class='show-errors-a'><?= $error ?></a>
+<?php            
+        }
+?>
+        </div>  
+<?php             
+    }
+?>
+
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if(!empty($_SESSION['pass']))
+    {
+?>
+        <div class='show-pass'>
+            <a class='show-errors-a'><?= $_SESSION['pass'] ?></a>
+        </div>  
+<?php  
+         unset($_SESSION['pass']);  
+    }
+?>
+   
+<!--
+    Name of page
+-->   
+<div class='name-of-page'> 
+    <h1>
+<?php
+    if(!empty($content['inputs']['id']))
+    {
+?>
+       _CREATED_MODULE_EDITION_
+<?php
+    }
+    else 
+    {       
+?>      
+    _CREATED_MODULE_ADD_
+<?php
+    }    
+?>   
+    </h1>
+</div> 
+
+<!--------------------------------------------------------------
+    Title of box
+-->   
+<div class='one-block-title'>
+    <h2><?= $lang['Main elements']?></h2>
+</div>
+
+<!--
+    TITLE
+    Box - input 580px 
+-->  
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        <?= $lang['Title']?>:
+    </div>
+    <div class='one-block-input'>
+        <input type='text'  name='title' id='title' class='input580 count-it' maxlength='300' value='<?= (!empty($content['inputs']['title'])) ? $content['inputs']['title']:'' ?>' />
+    </div>    
+</div>
+_CREATED_OWN_COLUMNS_
+<div class='one-block clearfixer'>
+    <div class='one-block-name'>
+        Ukryj:
+    </div>
+    <div class='one-block-input'>
+        <select name='hide' class='select100'>
+            <option value='0' <?= ( isset($content['inputs']['hide']) && $content['inputs']['hide'] == '0' ? 'selected':'') ?> >Nie</option>
+            <option value='1' <?= ( isset($content['inputs']['hide']) && $content['inputs']['hide'] == '1' ? 'selected':'') ?> >Tak</option>
+        </select>
+    </div> 
+    <!-- Question Mark -->
+    <div class='div_mark' id='div_header_mark'>
+        <img src='/public/images/cms/question_mark.png'>
+        <div class='div_note' id='div_header_note'>
+            Czy podstrona ma być ukryta w menu/witrynie?        </div>
+    </div> 
+    <!-- Question Mark End -->          
+</div>
+_GALLERY_PART2_
+_IMAGE_
+_TAGS1_
+_META_TAGS_           
+<!--
+    BUTTONS
+-->     
+<div class='downer-buttons'>  
+    <a href='<?= $_SERVER['HTTP_REFERER'] ?>' class='first-button'><button class='add_button' type='button'><?= $lang['Back']?></button></a>
+    <button class='add_button second-button' type='submit'><?= $lang['Save']?></button> 
+    <button class='add_button third-button' type='submit'><?= $lang['Save']?></button>  
+</div>  <!-- main_content_content_second_buttons -->  			
+
+</form>	
+
+<script src='/js/cms/cms_scripts.js'></script>

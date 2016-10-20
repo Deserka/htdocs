@@ -1,0 +1,1 @@
+$query->bindValue(':id', $id, PDO::PARAM_STR);

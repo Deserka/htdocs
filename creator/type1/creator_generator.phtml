@@ -1,0 +1,69 @@
+<?php
+
+echo 'Kolejność: Config | Table | Router | Controller | Model | Folders | Menu | Add | Gallery<br />';
+
+require_once($_SERVER['DOCUMENT_ROOT']."/creator/lib/lead/lead.php");
+
+if (empty($_POST['cms_menu']) || empty($_POST['cms_model'])) {
+	echo 'Puste zmienne..';
+	exit;
+}
+// Add Urls
+$urlObject = new cms_url_createUrls();
+$urlAddBasic = $urlObject->setUrl(array($_POST['cms_url']));
+$urlAddEdit = $urlObject->setUrl(array($_POST['cms_url'], 'edit'));
+$urlAddInsert = $urlObject->setUrl(array($_POST['cms_url'], 'insert'));
+
+// Gallery Urls
+$urlGalleryBasic = $urlObject->setUrlGallery(array($_POST['cms_url']));
+$urlGalleryInsert = $urlObject->setUrlGallery(array($_POST['cms_url']), 'insert');
+$urlGalleryEdit = $urlObject->setUrlGallery(array($_POST['cms_url']), 'edit');
+$urlGalleryUpdate = $urlObject->setUrlGallery(array($_POST['cms_url']), 'update');
+$urlGalleryDelete = $urlObject->setUrlGallery(array($_POST['cms_url']), 'delete', '([0-9]+)');
+$urlGalleryDelete2 = $urlObject->setUrlGallery(array($_POST['cms_url']), 'delete', '<?= $images[\'id\'] ?>');
+$urlGalleryQueue = $urlObject->setUrlGallery(array($_POST['cms_url']), 'queue');
+
+// Config
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/config_go.php');
+
+// Table returns string $table
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/table_go.php');
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/router_go.php');
+
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/controller_go.php');
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/model_go.php'); 
+
+// Folders
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/folders_go.php'); 
+
+// Menu
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/menu_go.php'); 
+
+// _Add
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/_Add_go.php');
+
+// _Gallery
+if (isset($_POST['gallery'])) {
+	include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/_Gallery_go.php');
+}
+
+//Page 
+
+// Router
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/page/router_go.php'); 
+
+// Controller
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/page/controller_go.php'); 
+
+// Model
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/page/model_go.php'); 
+
+// View
+include($_SERVER['DOCUMENT_ROOT'].'/creator/type1/page/view_go.php'); 
+
+

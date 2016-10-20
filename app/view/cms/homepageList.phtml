@@ -1,0 +1,66 @@
+<?php
+    $content = $this -> get('content');
+?>
+<!--
+    Images path
+-->
+<div class="contenerForPath">
+    <div class="arrow">
+        <a href="/cms-strony">
+            <?=$lang['Homepage'];?>
+        </a>        
+    </div>           
+</div>
+
+<!--
+    Buttons -> Add new site
+-->
+<div class="upper-buttons">
+          
+</div>
+
+<!--
+    Pass - success with adding 
+--> 
+<?php
+    if(!empty($_SESSION['pass']))
+    {
+?>
+        <div class="show-pass">
+            <a class="show-errors-a"><?= $_SESSION['pass'] ?></a>
+        </div>  
+<?php  
+         unset($_SESSION['pass']);  
+    }
+?>
+
+<!--------------------------------------------------------------
+    Name of page
+-->   
+<div class="name-of-page"> 
+    <h1>
+        <?= $lang['Pages list'];?> 
+    </h1>
+</div> 
+
+<div class="div-list">
+    
+    <div class="div-list-one-element clearfixer">
+        <div class="dloe-name">
+            <?= $lang['Homepage']?>
+        </div>
+        <div class="dloe-gallery">
+            <a href=""><?= $lang['Gallery']?></a>
+        </div>
+        <div class="dloe-edit">
+            <a href="/cms-strona-glowna-edytuj"><?= $lang['Edition']?></a>
+        </div>
+        <div class="dloe-delete-unactive">
+            <?= $lang['Delete']?>
+        </div>  
+    </div><!-- div-list-one-element -->
+
+
+
+
+<script src="js/cms/cms_scripts.js"></script>

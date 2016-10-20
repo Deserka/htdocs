@@ -1,0 +1,56 @@
+<?php 
+$style1 = 'style="background-color: #bf2423;"';
+$active = '#bf2423';
+if(!empty($_SESSION['login'])){ ?>  
+<!-- HOMEPAGE -->
+<div class="menu_button1 menu-home"
+<?php 
+    if($_SERVER['REQUEST_URI'] === '/cms-strona-glowna' || $_SERVER['REQUEST_URI'] === '/cms-strona-glowna-edytuj')
+    {
+       echo  $style1;
+    } 
+?>
+>
+    <a href="/cms-strona-glowna"><?= $lang['Homepage']?> </a>
+</div>
+<!-- Artykuły -->
+<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/artykuly") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
+    <a href='/cms/artykuly/kategorie/list'>
+        Artykuły
+    </a>
+</div>
+<!-- End Artykuły -->
+<!-- Produkty -->
+<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/produkty") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
+    <a href='/cms/produkty/kategorie/list'>
+        Produkty
+    </a>
+</div>
+<!-- End Produkty -->
+<!-- Kontakt -->
+<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/kontakt") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
+    <a href='/cms/kontakt'>
+        Kontakt
+    </a>
+</div>
+<!-- End Kontakt -->
+<!-- Aktualności -->
+<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/aktualnosci") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
+    <a href='/cms/aktualnosci/list'>
+        Aktualności
+    </a>
+</div>
+<!-- End Aktualności -->
+<!-- Adder -->
+<!-- SITEMAP -->
+<div class="menu_button1 menu-sitemap"
+<?php 
+    if($_SERVER['REQUEST_URI'] === '/cms-sitemap' || $_SERVER['REQUEST_URI'] === '/cms-sitemap')
+    {
+       echo  $style1;
+    } 
+?>
+>
+    <a href="/cms-sitemap"> Mapa strony </a>
+</div>
+<? } // end of session  ?>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="en">
+	<head>
+<?php include 'lang/'.$_SESSION['cms_lang'].'.php'; ?>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+<meta name="robots" content="index, follow" />
+<meta name="language" content="pl" />
+<meta name="author" content="Domyślny autor">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS - System Zarządzania treścią</title>
+<meta name="title" content=""/> 
+<meta name="keywords" content=""/>
+<meta name="description" content="" />
+
+<link rel="stylesheet" href="/public/stylesheets/cms.css" type="text/css" />	
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="" />						
+<link rel="shortcut icon" type="image/x-icon" href="" />
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" href="/js/scroller/jquery.custom-scrollbar.css" type="text/css" />	
+
+<!-- fancybox -->
+<link rel="stylesheet" href="/ed/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/ed/fancybox/source/jquery.fancybox.pack.js"></script>
+
+<!-- FROALA -->
+<link href="/js/font_awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/js/froala/css/froala_editor.min.css" rel="stylesheet" type="text/css" />
+<link href="/js/froala/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+  <link rel="stylesheet" href="/js/froala/css/plugins/char_counter.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/code_view.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/colors.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/emoticons.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/file.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/fullscreen.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/image.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/image_manager.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/line_breaker.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/quick_insert.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/table.css">
+  <link rel="stylesheet" href="/js/froala/css/plugins/video.css">
+
+<script type="text/javascript" src="/js/froala/js/froala_editor.min.js"></script>
+<script type="text/javascript" src="/js/froala/js/languages/pl.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+  <script type="text/javascript" src="/js/froala/js/plugins/align.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/char_counter.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/code_view.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/colors.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/emoticons.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/entities.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/file.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/font_family.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/fullscreen.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/image.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/image_manager.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/inline_style.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/line_breaker.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/link.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/lists.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/quick_insert.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/quote.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/table.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/save.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/url.min.js"></script>
+  <script type="text/javascript" src="/js/froala/js/plugins/video.min.js"></script>
+
+<!-- jQuery UI  -->
+<script type="text/javascript" src="/js/jQuery-ui/jquery-ui.js"></script>
+<link rel="stylesheet" href="/js/jQuery-ui/jquery-ui.css" type="text/css" media="screen" charset="utf-8">   		
+</head>
+<body>
+	<style>
+		#logs{float: right; color: white;  font: 13px  "Palatino Linotype", "Book Antiqua", Palatino, serif; margin-right: 20px; line-height: 40px; height: 40px; }
+		#logs a{text-decoration: none;}
+		#logs a:hover{text-decoration: underline;}
+		#editing_lang{position:absolute; top:0px; right:20px; font-family: Arial, Helvetica, sans-serif; color: #656565; font-size: 11px;}
+		#editing_lang a{color: #03C; cursor: pointer; font-weight: bold; border-bottom: 1px dotted #03C;}
+		#editing_lang a:hover{border-bottom: 1px solid #06C; color: #06C;}
+		.change_editing_lang_div{position:absolute; top:25px; right:20px; background: #dbdbdb; width: 90px; border: 1px solid #cacaca; z-index: 99999; 
+									-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; display: none;
+									}
+		.change_editing_lang_div p {padding: 5px; margin: 0px; font-size:11px; }
+		.change_editing_lang_div p:hover{background: #54a89b; cursor: pointer; }
+		.e-lang-not{position:absolute; top:160px; right:-18px; width:130px; text-align: center; font-size:11px; background: rgba(219, 219, 219, 0.5); border: 1px solid #cacaca; 
+					-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+			.cms_lang{margin-right:5px; cursor:pointer; }
+			.cms_lang:hover{}
+	</style>
+	<div id="page_head">
+		<a href="/cms"><img src="/public/images/cms/logo.png" /></a>
+		<div id="logs">
+			<?= $lang['Hello']?> <a style="color:#93ff00;" href="#"><?php echo $_SESSION['login']; ?></a> !
+			<!--<a style="margin-left:10px; color: #03a9ff; " href=""><?= $lang['Support']?></a>-->
+			<a style="margin-left:10px; color: #ff0000; " href="/cms-logout"><?= $lang['Logout']?></a>
+		</div>
+		<!--
+		<div style="float: right; margin: 10px 20px;  " id="cms_langs">
+			<a class="cms_lang" id="pl" style="display: inline-block; width:20px; height:20px; background: url('/public/images/cms/pl_flag.png') no-repeat;" ></a>
+			<a class="cms_lang" id="en"  style="display: inline-block; width:20px; height:20px; background: url('/public/images/cms/en_flag.png') no-repeat;" ></a>
+			<a class="cms_lang" id="de" style="display: inline-block; width:20px; height:20px; background: url('/public/images/cms/de_flag.png') no-repeat; " ></a>
+		</div>	
+		-->
+		<div class="clear"></div>	
+		
+	</div>
+<div id="main">
+	<div id="main_menu">
+		<?php include_once 'app/view/cms/parts/left_menu.phtml'; ?>
+	</div>
+	<div id="main_content">
+		<!--<div id="editing_lang"><?= $lang['Language version of your website']?>: &nbsp;<span style="color: red"><?=$_SESSION['editing_lang']?></span> &nbsp;<a id="e-lang-button"><?= $lang['change']?></a></div>
+		<div class="e-lang-change">
+			<div class="change_editing_lang_div">
+				<p class="e-lang"><span>pl</span> - <?= $lang['select']?></p>
+				<p class="e-lang"><span>en</span> - <?= $lang['select']?></p>
+				<p class="e-lang"><span>de</span> - <?= $lang['select']?></p>
+				<p class="e-lang"><span>ru</span> - <?= $lang['select']?></p>
+				<p class="e-lang"><span>it</span> - <?= $lang['select']?></p>
+				<p class="e-lang"><span>fr</span> - <?= $lang['select']?></p>
+				<div class="e-lang-not"><b><?= $lang['Warning']?>!</b><br /><?= $lang['After select the website will be refreshed.']?></div>
+			</div>
+		</div>-->
+		<?php $fill = $this -> main_part; (!empty($fill))? include $fill:'' ?>
+	</div>
+</div>
+
+<script>
+(function( $ ){
+	$.fn.e_lang_change = function(box) {
+			var lang = $(box).find('span').html();
+			var send = 'lang=' + lang;
+				$.ajax({
+					type     : "POST",
+					url      : "/cms-change-lang",
+					data     :  send,
+					dataType: 'json',
+					success : function(m) {
+							location.reload(); 				
+				    },
+					complete : function(r) {	},
+					error:    function(error) {	
+						alert('Coś poszło nie tak...');
+					}
+				})
+	},
+	$.fn.cms_lang_change = function(box) {
+			var lang = $(box).attr('id');
+			var send = 'cms_lang=' + lang;
+				$.ajax({
+					type     : "POST",
+					url      : "/cms-cms_change-lang",
+					data     :  send,
+					dataType: 'json',
+					success : function(m) {
+							location.reload(); 				
+				    },
+					complete : function(r) {	},
+					error:    function(error) {	
+						console.log('Coś poszło nie tak...');
+					}
+				})		
+	};
+})( jQuery );
+
+$('#e-lang-button').click(function(){
+	$(".change_editing_lang_div").slideToggle();
+});
+$('.e-lang').click(function(){
+	$(this).e_lang_change(this);
+});
+$('.cms_lang').click(function(){
+	$(this).cms_lang_change(this);
+});
+</script>
+</body>
+</html>

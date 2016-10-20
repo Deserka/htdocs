@@ -1,0 +1,1 @@
+<?= $content["content"]["TABLE_PREFIX_img_thumbTHUMB_NUMBER"] ?>

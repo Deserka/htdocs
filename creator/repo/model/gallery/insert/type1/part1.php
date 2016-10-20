@@ -1,0 +1,1 @@
+$ins->bindValue(':_CREATED_TABLE_PREFIX__img_parent_id', 0, PDO::PARAM_STR);

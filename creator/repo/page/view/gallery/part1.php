@@ -1,0 +1,11 @@
+<?= $content["content"]["img_id"] ?>
+<?= $content["content"]["img_parent_id"] ?>
+<?= $content["content"]["img_url"] ?>
+<!--* thumbs_part1 *-->
+<?= $content["content"]["img_title"] ?>
+<?= $content["content"]["img_content"] ?>
+<?= $content["content"]["img_alt"] ?>
+<?= $content["content"]["img_meta_title"] ?>
+<?= $content["content"]["img_file_name"] ?>
+<?= $content["content"]["img_date"] ?>
+<?= $content["content"]["img_queue"] ?>

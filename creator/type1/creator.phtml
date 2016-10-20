@@ -1,0 +1,237 @@
+<html>
+	<head>
+        <title>Creator Type 1</title>
+        <meta charset="UTF-8">
+        <script src="/js/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<style>
+			.add_sth{border: 1px solid grey; padding: 3px; width: 100px; cursor: pointer;  }
+			.but_new { border: 1px solid red; padding: 3px; cursor: pointer; margin-bottom: 5px; display: inline-block; margin-right: 5px;  }
+			
+    .midder{ width: 600px; margin: 0px auto; font: normal 13px/18px Arial, Helvetica, sans-serif; color: #333;}
+    .left{display: inline-block; width: 200px; }		
+    .grey-element { background: rgb(236, 236, 236) none repeat scroll 0% 0%; padding: 5px; margin-bottom: 3px;  }	
+    .deleter { display: block; background: rgb(255, 163, 163) none repeat scroll 0% 0%; cursor: pointer; padding: 5px; }
+    .adder-style { margin:5px 0px; border: 1px solid grey; padding: 3px; cursor: pointer; display: inline-block; padding:2px 5px;  }
+    .thumbs { background: rgb(224, 224, 224) none repeat scroll 0% 0%; padding: 5px }
+    .one_gallery_thumb { background: rgb(224, 224, 224) none repeat scroll 0% 0%; padding: 5px; margin: 2px 0px;  }
+			
+			
+		</style>
+	</head>
+	<body>
+		<a class="but_new" id="home">Homepage</a>
+		<a class="but_new" id="contact">Contact</a>
+		<script>
+
+			
+<?php
+include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/homepage_short.js");
+include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/contact_short.js");
+?>
+		</script>
+		
+<div class="midder">	
+	
+	<h2>Kreator - Type 1</h2> 
+		
+	<form method="post" action="/creator/type1/creator_generator.phtml">
+			
+		<h3>
+            Główne elementy w CMS
+        </h3>		
+        <p>
+            <a class="left">URL dla CMSa</a>
+            <a class="right"><input type='text' name="cms_url" /></a>
+        </p>
+        <p>
+            <a class="left">Nazwa w Menu CMSa</a>
+            <a class="right"><input type='text' name="cms_menu" /></a>
+        </p>
+        <p>
+            <a class="left">Strona główna (nie utworzy nowego wpisu w routerze)</a>
+            <a class="right"><input id="homepage_r" type='checkbox' name="homepage_r" /></a>
+        </p>               		
+		
+        <p>
+            <a class="left">Ikona w menu<span>Wybierz ikonkę</span></a>
+            <a class="right"><input type="text" value="menu-articles" name="menu_icon" class="input-icon" /></a>
+        </p>  
+        
+ <?php
+    $dirname = $_SERVER['DOCUMENT_ROOT'].'/creator/icons/';
+    $images = glob($dirname."*.png");
+    foreach($images as $image) {
+    	$image = explode('/', $image);
+    	$image = '/creator/icons/'.end($image);
+    echo '<img class="choose-image" style="margin-right: 10px; background: #000; padding: 5px; " src="'.$image.'" />';
+}
+?>  
+<script>
+    $('.choose-image').click(function(){
+            var name = $(this).attr('src').split('\/');
+            name = name[name.length-1].replace(".png", ""); 
+            $('.input-icon').val(name); 
+    });
+</script>       
+            
+        <h3>
+            Główne elementu modułu
+        </h3>
+         <p>
+            <a class="left">Nazwa kontrolera i modelu</a>
+            <a class="right"><input type='text' name="cms_model" /></a>
+        </p>
+        <p>
+            <a class="left">Nazwa tabeli</a>
+            <a class="right"><input type='text' name="cms_table" /></a>
+        </p>          
+        <p>
+            <a class="left">Nazwa ogólnego folderu</a>
+            <a class="right"><input type='text' name="cms_folder" /></a>
+        </p>        
+        <p>
+            <a class="left">Nazwa w configu</a>
+            <a class="right"><input type='text' name="cms_config" /></a>
+        </p>       
+        <p>
+            <a class="left">Nazwa mnoga ogólna dla widoku</a>
+            <a class="right"><input type='text' name="view_name" /></a>
+        </p> 
+        <p>
+            <a class="left">Nazwa pojedyncza ogólna dla widoku</a>
+            <a class="right"><input type='text' name="view_name_sing" /></a>
+        </p>  
+        <p>
+            <a class="left">Edycja 'coś'</a>
+            <a class="right"><input type='text' name="view_edition" /></a>
+        </p>          
+        <p>
+            <a class="left">Edytuj 'coś'</a>
+            <a class="right"><input type='text' name="view_edit" /></a>
+        </p>          
+          
+		<h3>
+			Meta tagi
+		</h3>
+        <p>
+            <a class="left">Dodaj meta tagi</a>
+            <a class="right"><input id="meta_tags" type='checkbox' name="meta_tags" /></a>
+        </p>   	          
+          
+		<h3>
+			Własne kolumny
+		</h3>
+		<div class="own-all"></div>
+		<div class="adder-style add_column">Dodaj kolumnę</div>
+		
+		<h3>
+			Zdjęcia
+		</h3>
+		<div class="own_images"></div>
+		<div class="add_photo adder-style">Dodaj zdjęcie</div>	
+		
+        <h3>
+            Galeria
+        </h3>	                         
+         <p>
+            <a class="left">Dodaj galerię</a>
+            <a class="right"><input id="gallery" type='checkbox' name="gallery" /></a>
+        </p>  
+        <p>
+            <a class="left">Max wielkość (kilobajty)</a>
+            <a class="right"><input type='text' id="gal_maxkb" name="gal_maxkb" /></a>
+        </p>   
+
+        <p>
+            <a class="left">Max szerokość</a>
+            <a class="right"><input type='text' id="gal_maxwidth" name="gal_max_width" /></a>
+        </p>  
+        <p>
+            <a class="left">Max wysokość</a>
+            <a class="right"><input type='text' id="gal_maxheight" name="gal_max_height" /></a>
+        </p>  
+        <p>
+            <a class="left">Żądana szerokość</a>
+            <a class="right"><input type='text' id="gal_reqwidth" name="gal_req_width" /></a>
+        </p>  
+        <p>
+            <a class="left">Żądana wysokość</a>
+            <a class="right"><input type='text' id="gal_reqheight" name="gal_req_height" /></a>
+        </p>
+		<div class="gallery_thumbs">
+		</div>
+	    <div class="add_gallery_thumb adder-style">Dodaj miniaturkę galerii</div>	 
+	    <a class="delete_last deleter">Usuń ostatnią miniaturkę</a>	   
+	    
+		<h3>
+			Page Router
+		</h3>
+        <p>
+         	<div class="router_urls">
+         	</div>
+            <div class="adder-style add_router_url">Dodaj URL</div>
+            <div class="adder-style add_router_url_delete">Usuń URL</div>
+        </p>
+        <script>
+        	$('.add_router_url').click(function(){
+        		$('.router_urls').append('<p><a class="left">URL + język np. (/de/kontakt)</a><a class="right"><input type="text" name="page_router_urls[]" /><input style="width:50px;" placeholder="lang" type="text" name="page_router_lang[]" /></a></p>');
+        	});
+        	$('.add_router_url_delete').click(function(){
+        		$('.router_urls').children().last().remove();
+        	});
+        </script>
+        
+		        
+	    
+<!--
+        <h3> Tagi</h3>	
+			Tagi 1: <input id="tags1" type='checkbox' name="tags1" />		
+			Nazwa mnoga w CMSie: <input type='text' id="tags1_name" name="tags1_name" />
+			Nazwa pojedyncza w CMSie: <input type='text' id="tags1_name_sing" name="tags1_name_sing" />	
+-->
+			<p>
+				<h3>Dane dla strony:</h3>
+				URL na stronie (całość - kontakt) - nie dotyczy strony głównej: <input type='text' id="page_url" name="page_url" /><br />				
+			</p>
+			
+			<input type="submit" value="Wyslij" />
+		</form>	 
+</div>		
+		<script>
+			$('.add_column').click(function() {
+				var count = $('.one-own-column').length;
+				var count_good = count + 1;
+				var ap = '<?= preg_replace("/\n\r|\n|\r\n|\t|[ ]{2,}/", "", file_get_contents($_SERVER['DOCUMENT_ROOT']."/creator/creator_elements/own_columns_template.phtml")); ?>';
+				$('.own-all').append(ap);
+			});
+			$('.add_photo').click(function() {
+				var count = $('.one-images').length;
+				var count_good = count + 1;
+				var ap = '<?= preg_replace("/\n\r|\n|\r\n|\t|[ ]{2,}/", "", file_get_contents($_SERVER['DOCUMENT_ROOT']."/creator/creator_elements/images_template.phtml")); ?>';
+				$('.own_images').append(ap);
+			});
+			$(document).on('click', '.add_thumb', function() {
+				var count_thumbs = $(this).parent().find('.thumb').length;
+				var thumb_number = count_thumbs + 1;
+				var number = $(this).parent().find('.number').html();
+				console.log(number);
+				var ap = '<?= preg_replace("/\n\r|\n|\r\n|\t|[ ]{2,}/", "", file_get_contents($_SERVER['DOCUMENT_ROOT']."/creator/creator_elements/thumb_template.phtml")); ?>';
+				$(this).parent().find('.thumbs').append(ap);
+			});
+			$('.add_gallery_thumb').click(function() {
+				var thumbs = $('.one_gallery_thumb').length;
+				var thumb_number = thumbs + 1;
+				var ap = '<?= preg_replace("/\n\r|\n|\r\n|\t|[ ]{2,}/", "", file_get_contents($_SERVER['DOCUMENT_ROOT']."/creator/creator_elements/gallery_thumb_template.phtml")); ?>';
+				$('.gallery_thumbs').append(ap);
+			});
+			$(document).on('click', '.delete_one_own', function(){ 
+				$(this).parent().remove();
+			})			
+			$(document).on('click', '.delete_last', function(){ 
+				$(this).parent().find('.one_gallery_thumb').last().remove();
+			})
+
+		</script>
+	</body>
+</html>
