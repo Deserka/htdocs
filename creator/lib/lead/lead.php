@@ -22,8 +22,7 @@ abstract class Creator {
 	$modified = str_replace(PHP_EOL, '', $modified);
 	file_put_contents($file, $modified);
 	echo "Puste entery usunięto. <br />\n";
-		
-	}	
+	}
 
 	public function startComment($moduleName) {
 		return "/* " . $moduleName . " */\n";

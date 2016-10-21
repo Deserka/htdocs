@@ -15,21 +15,23 @@
     .adder-style { margin:5px 0px; border: 1px solid grey; padding: 3px; cursor: pointer; display: inline-block; padding:2px 5px;  }
     .thumbs { background: rgb(224, 224, 224) none repeat scroll 0% 0%; padding: 5px }
     .one_gallery_thumb { background: rgb(224, 224, 224) none repeat scroll 0% 0%; padding: 5px; margin: 2px 0px;  }
+    .be_fixed {position: fixed}
 			
 			
 		</style>
 	</head>
 	<body>
-		<a class="but_new" id="home">Homepage</a>
-		<a class="but_new" id="contact">Contact</a>
-		<script>
+<div class="be_fixed">	
+	<a class="but_new" id="home">Homepage</a>
+	<a class="but_new" id="contact">Contact</a>
+</div>		
 
-			
+<script>
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/homepage_short.js");
 include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/contact_short.js");
 ?>
-		</script>
+</script>
 		
 <div class="midder">	
 	
@@ -150,7 +152,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/contact_sho
         <p>
             <a class="left">Max wysokość</a>
             <a class="right"><input type='text' id="gal_maxheight" name="gal_max_height" /></a>
-        </p>  
+        </p>
         <p>
             <a class="left">Żądana szerokość</a>
             <a class="right"><input type='text' id="gal_reqwidth" name="gal_req_width" /></a>
@@ -181,8 +183,6 @@ include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/contact_sho
         		$('.router_urls').children().last().remove();
         	});
         </script>
-        
-		        
 	    
 <!--
         <h3> Tagi</h3>	
@@ -194,6 +194,14 @@ include($_SERVER['DOCUMENT_ROOT'] . "/creator/creator_elements/type1/contact_sho
 				<h3>Dane dla strony:</h3>
 				URL na stronie (całość - kontakt) - nie dotyczy strony głównej: <input type='text' id="page_url" name="page_url" /><br />				
 			</p>
+			
+		<h3>
+			ALL MODEL
+		</h3>
+        <p>
+            <a class="left">URL + TITLE depends on lang</a>
+            <a class="right"><input type='checkbox' id="model_all_type1" name="model_all_type1" /></a>
+        </p>
 			
 			<input type="submit" value="Wyslij" />
 		</form>	 

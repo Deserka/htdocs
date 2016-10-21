@@ -13,7 +13,7 @@ class page_router_createRouter extends Creator {
 		$this->twelveSpaces = $this->fourSpaces . $this->fourSpaces . $this->fourSpaces;
 	}
 	
-	public function createRouterElementType1(array $listOfUrls, array $listOfUrlsList, $moduleName) {
+	public function createRouterElementType1(array $listOfUrls, $moduleName) {
 		for ($i=0; $i<count($listOfUrls); $i++) {
 			if ($i === 0) {
 				$or = '';

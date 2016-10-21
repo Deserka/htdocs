@@ -32,13 +32,6 @@ $configuration =
     'all_categories'    => 1,   // 0 or 1
     'all_subcategories' => 0,
     'all_tags'          => 0,
-/* Kontakt */
-'contact_gallery_max_size' => 1000, // kb
-'contact_gallery_max_width' => 1920,
-'contact_gallery_max_height' => 1080,
-'contact_gallery_required_width' => 1000,
-'contact_gallery_required_height' => 800,
-/* End Kontakt */
 /* Aktualności */
 'aktualnosci_gallery_max_size' => 1000, // kb
 'aktualnosci_gallery_max_width' => 1920,
@@ -46,6 +39,13 @@ $configuration =
 'aktualnosci_gallery_required_width' => 1000,
 'aktualnosci_gallery_required_height' => 800,
 /* End Aktualności */
+/* Kontakt */
+'contact_gallery_max_size' => 1000, // kb
+'contact_gallery_max_width' => 1920,
+'contact_gallery_max_height' => 1080,
+'contact_gallery_required_width' => 1000,
+'contact_gallery_required_height' => 800,
+/* End Kontakt */
 /* Adder */
 /****adding***/
 ];

@@ -27,13 +27,6 @@ if(!empty($_SESSION['login'])){ ?>
     </a>
 </div>
 <!-- End Produkty -->
-<!-- Kontakt -->
-<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/kontakt") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
-    <a href='/cms/kontakt'>
-        Kontakt
-    </a>
-</div>
-<!-- End Kontakt -->
 <!-- Aktualności -->
 <div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/aktualnosci") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
     <a href='/cms/aktualnosci/list'>
@@ -41,6 +34,13 @@ if(!empty($_SESSION['login'])){ ?>
     </a>
 </div>
 <!-- End Aktualności -->
+<!-- Kontakt -->
+<div class='menu_button1' style='background: url("/public/images/cms/menu/menu-articles.png"); background-repeat: no-repeat; background-position: 13px center; <?= ( strpos($_SERVER['REQUEST_URI'], "cms/kontakt") !== false ) ? "background-color: rgb(191, 36, 35) !important;":""  ?>' >
+    <a href='/cms/kontakt'>
+        Kontakt
+    </a>
+</div>
+<!-- End Kontakt -->
 <!-- Adder -->
 <!-- SITEMAP -->
 <div class="menu_button1 menu-sitemap"

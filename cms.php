@@ -44,47 +44,6 @@ elseif ($_SERVER['REQUEST_URI'] === '/cms-sitemap') {
     $ob->generateSitemap();
     exit;
 }
-/* Kontakt */
-elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt") {
-    $ob = new cms_contactController;
-    $ob->contactEdit();
-    exit;
-} elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt/edit") {
-    $ob = new cms_contactController;
-    $ob->contactEdit();
-    exit;
-} elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt/insert") {
-    $ob = new cms_contactController;
-    $ob->contactInsert();
-    exit;
-} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery") {
-    $ob = new cms_contactController;
-    $ob->contactGallery();
-    exit;
-} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/insert") {
-    $ob = new cms_contactController;
-    $ob->contactGalleryInsert();
-    exit;
-} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/edit") {
-    $ob = new cms_contactController;
-    $ob->contactGalleryEdit();
-    exit;
-} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/update") {
-    $ob = new cms_contactController;
-    $ob->contactGalleryUpdate();
-    exit;
-} elseif (preg_match("/^\/cms\/kontakt\/gallery\/([0-9]+)\/delete$/", $_SERVER["REQUEST_URI"])) {
-    $o = preg_match("/^\/cms\/kontakt\/gallery\/([0-9]+)\/delete$/", $_SERVER["REQUEST_URI"], $neededVariables);
-    $imageId = $neededVariables[1];
-    $ob = new cms_contactController;
-    $ob->contactGalleryDelete($imageId);
-    exit;
-} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/queue") {
-    $ob = new cms_contactController;
-    $ob->contactGalleryQueue();
-    exit;
-} 
-/* End Kontakt */
 /* Aktualności */
 elseif ($_SERVER["REQUEST_URI"] === "/cms/aktualnosci") {
     $ob = new cms_aktualnosciController;
@@ -157,6 +116,47 @@ elseif ($_SERVER["REQUEST_URI"] === "/cms/aktualnosci") {
     exit;
 } 
 /* End Aktualności */
+/* Kontakt */
+elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt") {
+    $ob = new cms_contactController;
+    $ob->contactEdit();
+    exit;
+} elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt/edit") {
+    $ob = new cms_contactController;
+    $ob->contactEdit();
+    exit;
+} elseif ($_SERVER["REQUEST_URI"] === "/cms/kontakt/insert") {
+    $ob = new cms_contactController;
+    $ob->contactInsert();
+    exit;
+} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery") {
+    $ob = new cms_contactController;
+    $ob->contactGallery();
+    exit;
+} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/insert") {
+    $ob = new cms_contactController;
+    $ob->contactGalleryInsert();
+    exit;
+} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/edit") {
+    $ob = new cms_contactController;
+    $ob->contactGalleryEdit();
+    exit;
+} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/update") {
+    $ob = new cms_contactController;
+    $ob->contactGalleryUpdate();
+    exit;
+} elseif (preg_match("/^\/cms\/kontakt\/gallery\/([0-9]+)\/delete$/", $_SERVER["REQUEST_URI"])) {
+    $o = preg_match("/^\/cms\/kontakt\/gallery\/([0-9]+)\/delete$/", $_SERVER["REQUEST_URI"], $neededVariables);
+    $imageId = $neededVariables[1];
+    $ob = new cms_contactController;
+    $ob->contactGalleryDelete($imageId);
+    exit;
+} elseif($_SERVER["REQUEST_URI"] === "/cms/kontakt/gallery/queue") {
+    $ob = new cms_contactController;
+    $ob->contactGalleryQueue();
+    exit;
+} 
+/* End Kontakt */
 /* Adder */
 else {
 	$ob = new cms_cmsController;

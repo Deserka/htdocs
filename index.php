@@ -51,14 +51,6 @@ if($_SERVER['REQUEST_URI'] === '/' || preg_match('/^\/[a-z]{2}\/$/', $_SERVER['R
     exit;
 }
 /* End Homepage */
-/* Kontakt */
-elseif ($_SERVER["REQUEST_URI"] === "/kontakt") {
-    $ob = new contactController;
-    $ob->contact();
-	echo 'tutaj';
-    exit;
-} 
-/* End Kontakt */
 /* Aktualności */
 if ($_SERVER["REQUEST_URI"] === "/news" || preg_match("/^\/news\/aaa-([\d]+)$/", $_SERVER["REQUEST_URI"])) {
 	if ($_SERVER["REQUEST_URI"] === "/news") {
@@ -83,6 +75,13 @@ if (preg_match("/^\/news\/id-([\d]+)iurl-([a-zA-Z0-9-_]+)$/", $_SERVER["REQUEST_
 	$ob->aktualnosciOne($id, $url);
 }
 /* End Aktualności */
+/* Kontakt */
+elseif ($_SERVER["REQUEST_URI"] === "/kontakt") {
+    $ob = new contactController;
+    $ob->contact();
+    exit;
+} 
+/* End Kontakt */
 /* Adder */
     $ob = new indexController;
     $ob->er404();
